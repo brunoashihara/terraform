@@ -74,8 +74,6 @@ Praticamente todas as configurações do deploy estão declaradas no arquivo **a
 + **var.lng.gw** _linha 330_ - Modifique para o IP publico do seu onpremises para a conexão da VPN;
 + **var.vng_connection** _linha 343_ - Modifique a sua pré-shared key para conexão da VPN;
 
-
-
 ## Executar OpenTofu
 
 1. Para iniciar o OpenTofu navegue até o diretório que contêm o arquivo **main.tf** e execute o seguinte comando:

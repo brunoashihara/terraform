@@ -21,6 +21,20 @@ resource "oci_core_instance" "oci01" {
 
   metadata = {
     ssh_authorized_keys = tls_private_key.tf_key.public_key_openssh
-    user_data           = #!/bin/bash\n\nyum install nfs-utils -y\nmkdir -p /mnt/export\nsudo mount ${oci_file_storage_mount_target.mount.private_ip_ids}:/export /mnt/export"
+  }
+
+  connection {
+    type        = var.instance.type
+    host        = self.public_ip
+    user        = var.instance.user
+    private_key = tls_private_key.tf_key.private_key_pem
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo yum install nfs-utils",
+      "sudo mkdir -p /mnt/export",
+      "sudo mount ${oci_file_storage_mount_target.mount.private_ip_ids}:/export /mnt/export"
+    ]
   }
 }

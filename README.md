@@ -5,7 +5,7 @@ Laboratórios de IaC para os providers AWS, AZURE, GCP e OCI.
 ## Checklist
 
 1. Instalação OpenTofu;
-2. Instalação cli do provider 
+2. Instalação cli do provider;
 3. Modificar variaveis do terraform;
 
 **Por experiência recomendo o uso de ambiente GNU/Linux pois o Windows e Antvírus podem invalidar e acusar as instalações como maliciosas. Em caso de uso do Windows podemos usar o [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install)**
@@ -39,10 +39,10 @@ Laboratórios de IaC para os providers AWS, AZURE, GCP e OCI.
 
 ## Instalação cli do provider
 
-+ [AWS]()
-+ [AZURE]()
-+ [GCP]()
-+ [OCI]()
++ [AWS](https://github.com/brunoashihara/terraform/blob/main/AWS/README.md)
++ [AZURE](https://github.com/brunoashihara/terraform/blob/main/AZURE/README.md)
++ [GCP](https://github.com/brunoashihara/terraform/blob/main/GCP/README.md)
++ [OCI](https://github.com/brunoashihara/terraform/blob/main/OCI/README.md)
 
 ## Referências
 

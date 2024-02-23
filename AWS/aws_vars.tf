@@ -133,7 +133,7 @@ variable "sb_private" {
   description = "Variaveis sb private"
   default     = {
     name      = "teste-sb-private"
-    cidr      = "12.168.1.0/24"
+    cidr      = "192.168.1.0/24"
 
   }
 }

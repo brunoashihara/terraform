@@ -110,7 +110,7 @@ variable "vpc" {
 ############################################
 
 variable "sb_public" {
-  description = "Variaveis sb public
+  description = "Variaveis sb public"
   default     = {
     name      = "teste-sb-public"
     ip        = "192.168.10.0/24"
@@ -126,7 +126,7 @@ variable "fw_public" {
   default     = {
     name      = "teste-fw-public"
     icmp      = "icmp"
-    tcp       = "tcp'
+    tcp       = "tcp"
     http      = "80"
     ssh       = "22"
     rdp       = "3389"
@@ -186,7 +186,7 @@ variable "vpn" {
     tunnel    = "teste-tunnel"
     onprem    = "x.x.x.x"
     onprem_sb = "x.x.x.x/x"
-    key       = "!@#123Mudar@@'
+    key       = "##Mudar@@"
     rt_name   = "teste-vpn-rt"
     rt_prio   = 1000
   }

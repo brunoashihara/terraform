@@ -1,28 +1,23 @@
 # GCP - OpenTofu
 
 Este projeto cria os seguintes recursos:
-+ Resource Group; 
-+ VN;
-+ Subnet Publica e Privada;
-+ IP Publico Linux;
-+ IP Publico Windows;
-+ Network Interface Linux;
-+ Network Interface Windows;
-+ Container Blob;
-+ Container Group;
-+ Network Security Group Publica;
-+ Azure SQL MSSQL;
-+ Azure SQL POSTGRES;
-+ Azure SQL MYSQL;
-+ Azure Storage Account;
-+ Chave Publica e Privada;
-+ VM Linux com NFS montado;
-+ VM WIndows **em teste para montar ao subir com o terraform**;
-+ CosmoDB;
-+ IP Publico VPN;
-+ Subnet VPN;
-+ Virtual Network Gateway;
-+ Local Network Gateway;
++ Projeto; 
++ VPC;
++ Subnet Publica;
++ Firewall Publica;
++ IP Linux;
++ Compute Linux com NFS montado;
++ Filestore;
++ Firestore;
++ GKE;
++ Chave privada e publica;
++ Cloud SQL postgres;
++ Cloud Storage;
++ VPN Gateway;
++ IP VPN;
++ Forwarding Rules;
++ VPN Tunnels;
++ VPN Route Table;
 
 ## Instalação GCP CLI
 
@@ -78,17 +73,15 @@ Este projeto cria os seguintes recursos:
 ## Alterar variaveis
 
 Praticamente todas as configurações do deploy estão declaradas no arquivo **gcp.vars.tf**, interessante modicar as seguinte variaveis para não ocorrer problemas no ambiente:
-+ **var.rg.region** _linha 9_ - Coloque a região do seu ambiente;
-+ **var.rg.onprem** _linha 12_ - Modifique para a faixa de IP do seu onpremises para a conexão da VPN;
-+ **var.cosmodb.location** _linha 62_ - Coloque a região do seu ambiente;
-+ **var.key.private** _linha 144_ - Nome da chave .pem;
-+ **var.vn.ip** _linha 158_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
-+ **var.sb_public.ip** _linha 171_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
-+ **var.sb_private.ip** _linha 179_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
-+ **var.sb_vpn** _linha 187_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
-+ **var.storage.name** _linha 264_ - Valor unico, modifique para que não haja problemas no deploy;
-+ **var.lng.gw** _linha 330_ - Modifique para o IP publico do seu onpremises para a conexão da VPN;
-+ **var.vng_connection** _linha 343_ - Modifique a sua pré-shared key para conexão da VPN;
++ **var.project.name** _linha 8_ - Nome do projeto;
++ **var.project.region** _linha 9_ - Região para deploy;
++ **var.project.zone** _linha 10_ - Zona para deploy;
++ **var.key.private** _linha 92_ - Nome da chave .pem;
++ **var.sb_public.ip** _linha 116_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
++ **var.stg.name** _linha 169_ - Modifique o nome do Cloud Storage;
++ **var.vpn.onprem** _linha 187_ - Modifique para o IP publico do seu onpremises para a conexão da VPN;
++ **var.vpn.onprem_sb** _linha 188_ - Modifique para o faixa IP do seu onpremises para a conexão da VPN;
++ **var.vpn.key** _linha 189_ - Modifique a sua pré-shared key para conexão da VPN;
 
 ## Executar OpenTofu
 

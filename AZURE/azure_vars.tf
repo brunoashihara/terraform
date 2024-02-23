@@ -9,7 +9,7 @@ variable "rg" {
     region    = "East US"
     admin     = "adminuser"
     pass      = "123Mudar@@"
-    onprem    = "x.x.x.x"
+    onprem    = "x.x.x.x/x"
   }
 }
 
@@ -340,6 +340,6 @@ variable "vng_connection" {
     encrypt   = "AES256"
     integrity = "SHA1"
     pfs       = "None"
-    key       = "!@#123Mudar@@"
+    key       = "##123Mudar@@"
   }
 }

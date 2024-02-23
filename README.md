@@ -49,6 +49,4 @@ Laboratórios de IaC para os providers AWS, AZURE, GCP e OCI.
 + [OpenTofu docs](https://opentofu.org/docs/)
 + [Terraform docs](https://registry.terraform.io/providers)
 + [OCI cli](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm)
-+ [Azure cli](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=script)
-+ [AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 + [GCP cli](https://cloud.google.com/sdk/docs/install#linux)

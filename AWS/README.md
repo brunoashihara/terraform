@@ -22,32 +22,32 @@ Este projeto cria os seguintes recursos:
 1. Para realizar a instalação é necessário ter o pacote unzip:
    - dnf
 
-```bash
-   dnf install unzip -y
-```
+   ```bash
+      dnf install unzip -y
+   ```
 
    - apt
 
-```bash
-   apt install unzip -y
-```
+   ```bash
+      apt install unzip -y
+   ```
 
 2. Seguir a instalação dependendo da sua arquitetura:
    - x86
 
-```bash
-   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-   unzip awscliv2.zip
-   sudo ./aws/install
-``` 
+   ```bash
+      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      unzip awscliv2.zip
+      sudo ./aws/install
+   ``` 
 
    - ARM
 
-```bash
-   curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
-   unzip awscliv2.zip
-   sudo ./aws/install
-``` 
+   ```bash
+      curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
+      unzip awscliv2.zip
+      sudo ./aws/install
+   ``` 
 
 + MacOS
 
@@ -83,9 +83,9 @@ Praticamente todas as configurações do deploy estão declaradas no arquivo **a
 + **var.region.name** _linha 8_ - Recomendado utilizar o passado no comando **aws configure**;
 + **var.kp.private** _linha 68_ - Nome da chave .pem;
 + **var.s3_bucket_name** _linha 101_ - Nomes de bucket precisam ser unicos, modifique-o para que não haja erros no deploy;
-+ **var.vpc.cidr** _linha 113_ - CIDR da VPC, modifique para um CIDR que não sobreponha nenhuma rede do seu ambiente;
-+ **var.sb_public.cidr** _linha 128_ - CIDR da subnet publica, modifique para uma faixa de IP que não sobreponha nenhuma rede do seu ambiente;
-+ **var.sb_private.cidr** _linha 136_ - CIDR da subnet privada, modifique para uma faixa de IP que não sobreponha nenhuma rede do seu ambiente;
++ **var.vpc.cidr** _linha 113_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
++ **var.sb_public.cidr** _linha 128_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
++ **var.sb_private.cidr** _linha 136_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
 
 ## Executar OpenTofu
 
@@ -127,3 +127,7 @@ Praticamente todas as configurações do deploy estão declaradas no arquivo **a
 ```
 
 Em caso negativo ao tentar sincronizar o status, se for necessário destruir o ambiente este deve ser destruido os recursos de forma manual.
+
+## Referências
+
++ [AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)

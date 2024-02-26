@@ -80,7 +80,7 @@ resource "oci_core_network_security_group_security_rule" "ngs-ingress" {
 }
 
 ############################################
-# NETWORK SECURITY GROUP EGRESS
+# NETWORK SECURITY GROUP RULE EGRESS
 ############################################
 
 resource "oci_core_network_security_group_security_rule" "ngs-egress" {

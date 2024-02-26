@@ -7,7 +7,7 @@ variable "compartment" {
   default = {
     name   = "tf"
     desc   = "teste tofu"
-    delete = false
+    delete = true
     ad     = "jSSY:US-ASHBURN-AD-1"
   }
 }
@@ -118,7 +118,7 @@ variable "bucket" {
   description = "Variaveis bucket"
   default = {
     name      = "tf-tf-teste-tf-tf"
-    namespace = "idnriwtvurim"
+    namespace = "xxxxxxxxxxxx"
     type      = "NoPublicAccess"
     tier      = "Standard"
   }
@@ -135,7 +135,7 @@ variable "autodb" {
     name    = "autodbtf"
     version = "19c"
     free    = "true"
-    pass    = "!@#123Mudar@@"
+    pass    = "##123Mudar@@"
   }
 }
 

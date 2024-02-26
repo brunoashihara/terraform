@@ -32,9 +32,9 @@ resource "oci_core_instance" "oci01" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo yum install nfs-utils",
+      "sudo yum install nfs-utils -y",
       "sudo mkdir -p /mnt/export",
-      "sudo mount ${oci_file_storage_mount_target.mount.private_ip_ids}:/export /mnt/export"
+      "sudo mount ${oci_file_storage_mount_target.mount.ip_address}:/export /mnt/export"
     ]
   }
 }

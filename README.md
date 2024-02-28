@@ -39,10 +39,10 @@ Laboratórios de IaC para os providers AWS, AZURE, GCP e OCI.
 
 ## Instalação cli do provider
 
-+ [AWS](https://github.com/brunoashihara/terraform/blob/main/AWS/README.md)
-+ [AZURE](https://github.com/brunoashihara/terraform/blob/main/AZURE/README.md)
-+ [GCP](https://github.com/brunoashihara/terraform/blob/main/GCP/README.md)
-+ [OCI](https://github.com/brunoashihara/terraform/blob/main/OCI/README.md)
++ [AWS](https://github.com/brunoashihara/terraform/blob/main/AWS/)
++ [AZURE](https://github.com/brunoashihara/terraform/blob/main/AZURE/)
++ [GCP](https://github.com/brunoashihara/terraform/blob/main/GCP/)
++ [OCI](https://github.com/brunoashihara/terraform/blob/main/OCI/)
 
 ## Referências
 

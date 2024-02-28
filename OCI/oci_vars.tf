@@ -184,3 +184,26 @@ variable "export" {
     path = "/export"
   }
 }
+
+############################################
+# Customer Premises Equipament
+############################################
+
+variable "cpe" {
+  description = "Variaveis cpe"
+  default     = {
+    name      = "cpe"
+    ip        = x.x.x.x
+  }
+}
+
+############################################
+# Dynamic Routing Gateway
+############################################
+
+variable "drg" {
+  description = "Variaveis drg"
+  default     = {
+    name      = "drg"
+  }
+}

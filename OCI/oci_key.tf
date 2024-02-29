@@ -4,7 +4,7 @@
 
 resource "tls_private_key" "tf_key" {
   algorithm = var.key.algo
-  rsa_bits  = "2048"
+  rsa_bits  = var.key.bit
 }
 
 ############################################

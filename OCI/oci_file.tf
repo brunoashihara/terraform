@@ -3,7 +3,7 @@
 ############################################
 
 resource "oci_file_storage_file_system" "file" {
-  availability_domain = var.compartment.ad
+  availability_domain = var.file.ad
   compartment_id      = oci_identity_compartment.compartment.id
   display_name        = var.file.name
 }
@@ -13,7 +13,7 @@ resource "oci_file_storage_file_system" "file" {
 ############################################
 
 resource "oci_file_storage_mount_target" "mount" {
-  availability_domain = var.compartment.ad
+  availability_domain = var.mount.ad
   compartment_id      = oci_identity_compartment.compartment.id
   subnet_id           = oci_core_subnet.sb_public.id
   display_name        = var.mount.name

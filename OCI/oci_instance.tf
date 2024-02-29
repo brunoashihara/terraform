@@ -3,7 +3,7 @@
 ############################################
 
 resource "oci_core_instance" "oci01" {
-  availability_domain = var.compartment.ad
+  availability_domain = var.instance.ad
   compartment_id      = oci_identity_compartment.compartment.id
   shape               = var.instance.shape.name
   display_name        = var.instance.name

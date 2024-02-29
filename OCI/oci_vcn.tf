@@ -41,7 +41,7 @@ resource "oci_core_route_table" "rt" {
   dynamic "route_rules" {
     for_each = [true]
     content {
-      destination       = var.vcn.coringa
+      destination       = var.rt_public.cidr
       description       = var.rt_public.desc
       network_entity_id = oci_core_internet_gateway.igw.id
     }
@@ -74,9 +74,9 @@ resource "oci_core_network_security_group" "nsg" {
 resource "oci_core_network_security_group_security_rule" "ngs-ingress" {
   network_security_group_id = oci_core_network_security_group.nsg.id
   direction                 = var.nsg_public.ingress
-  protocol                  = var.nsg_public.coringa
+  protocol                  = var.nsg_public.proto_all
   source_type               = var.nsg_public.type
-  source                    = var.vcn.coringa
+  source                    = var.nsg_public.cidr_all
 }
 
 ############################################
@@ -86,7 +86,7 @@ resource "oci_core_network_security_group_security_rule" "ngs-ingress" {
 resource "oci_core_network_security_group_security_rule" "ngs-egress" {
   network_security_group_id = oci_core_network_security_group.nsg.id
   direction                 = var.nsg_public.egress
-  protocol                  = var.nsg_public.coringa
+  protocol                  = var.nsg_public.proto_all
   destination_type          = var.nsg_public.type
-  destination               = var.vcn.coringa
+  destination               = var.nsg_public.cidr_all
 }

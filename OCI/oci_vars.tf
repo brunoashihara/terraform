@@ -19,9 +19,8 @@ variable "compartment" {
 variable "vcn" {
   description = "The details of VCN1."
   default = {
-    cidr    = ["10.23.0.0/20"]
-    name    = "tf-vcn"
-    coringa = "0.0.0.0/0"
+    cidr = ["10.23.0.0/20"]
+    name = "tf-vcn"
   }
 }
 
@@ -47,6 +46,7 @@ variable "rt_public" {
   default = {
     name = "rt-public"
     desc = "Route Table Public"
+    cidr = "0.0.0.0/0"
   }
 }
 
@@ -68,11 +68,12 @@ variable "igw" {
 variable "nsg_public" {
   description = "Variaveis nsg public"
   default = {
-    name    = "tf-nsg"
-    type    = "CIDR_BLOCK"
-    ingress = "INGRESS"
-    egress  = "EGRESS"
-    coringa = "all"
+    name      = "tf-nsg"
+    type      = "CIDR_BLOCK"
+    ingress   = "INGRESS"
+    egress    = "EGRESS"
+    proto_all = "all"
+    cidr_all  = "0.0.0.0/0"
   }
 }
 
@@ -94,6 +95,7 @@ variable "instance" {
     }
     type = "ssh"
     user = "opc"
+    ad   = "jSSY:US-ASHBURN-AD-1"
   }
 }
 
@@ -105,6 +107,7 @@ variable "key" {
   description = "Variaveis key"
   default = {
     algo = "RSA"
+    bit  = "2048"
     file = "teste-oci-key.pem"
     perm = "0600"
   }
@@ -118,7 +121,7 @@ variable "bucket" {
   description = "Variaveis bucket"
   default = {
     name      = "tf-tf-teste-tf-tf"
-    namespace = "xxxxxxxxxxxx"
+    namespace = "idnriwtvurim"
     type      = "NoPublicAccess"
     tier      = "Standard"
   }
@@ -131,11 +134,13 @@ variable "bucket" {
 variable "autodb" {
   description = "Variaveis autonomousdb"
   default = {
-    db_name = "autodbtf"
-    name    = "autodbtf"
-    version = "19c"
-    free    = "true"
-    pass    = "##123Mudar@@"
+    db_name   = "autodbtf"
+    name      = "autodbtf"
+    version   = "19c"
+    free      = "true"
+    pass      = "##123Mudar@@"
+    backup    = "true"
+    retention = 1
   }
 }
 
@@ -160,6 +165,7 @@ variable "file" {
   description = "Variaveis file"
   default = {
     name = "tf-file"
+    ad   = "jSSY:US-ASHBURN-AD-1"
   }
 }
 
@@ -171,6 +177,7 @@ variable "mount" {
   description = "Variaveis mount target"
   default = {
     name = "mt-tf"
+    ad   = "jSSY:US-ASHBURN-AD-1"
   }
 }
 
@@ -191,9 +198,9 @@ variable "export" {
 
 variable "cpe" {
   description = "Variaveis cpe"
-  default     = {
-    name      = "cpe"
-    ip        = x.x.x.x
+  default = {
+    name = "cpe"
+    ip   = "x.x.x.x"
   }
 }
 
@@ -203,7 +210,57 @@ variable "cpe" {
 
 variable "drg" {
   description = "Variaveis drg"
-  default     = {
-    name      = "drg"
+  default = {
+    name = "drg"
+  }
+}
+
+############################################
+# Dynamic Routing Gateway Attachment
+############################################
+
+variable "drg_attach" {
+  description = "Variaveis drg attachment"
+  default = {
+    name = "drg-attach"
+    type = "VCN"
+  }
+}
+
+############################################
+# Dynamic Routing Gateway Route Table
+############################################
+
+variable "drg_rt" {
+  description = "Variaveis drg route table"
+  default = {
+    name = "drg-rt"
+    ecmp = "true"
+  }
+}
+
+############################################
+# Dynamic Routing Gateway Route Table Rule
+############################################
+
+variable "drg_rt_rule" {
+  description = "Variaveis drg route table rules"
+  default = {
+    dest = "x.x.x.x/x"
+    type = "CIDR_BLOCK"
+  }
+}
+
+############################################
+# IPSec
+############################################
+
+variable "ipsec" {
+  description = "Variaveis ipsec"
+  default = {
+    name       = "ipsec"
+    ident_type = "IP_ADDRESS"
+    cpe        = "x.x.x.x"
+    static     = ["x.x.x.x/x"]
   }
 }

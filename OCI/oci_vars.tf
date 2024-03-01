@@ -147,19 +147,6 @@ variable "autodb" {
 }
 
 ############################################
-# AUTONOMOUS DATABASE BACKUP
-############################################
-
-variable "autodb_backup" {
-  description = "Variaveis autonomous database backup"
-  default = {
-    name      = "autodb-backup"
-    long_term = "false"
-    retention = 1
-  }
-}
-
-############################################
 # FILE STORAGE
 ############################################
 

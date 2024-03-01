@@ -44,9 +44,11 @@ variable "sb_public" {
 variable "rt_public" {
   description = "Variaveis rt public"
   default = {
-    name = "rt-public"
-    desc = "Route Table Public"
-    cidr = "0.0.0.0/0"
+    name  = "rt-public"
+    desc1 = "Route Table Rule IGW"
+    cidr1 = "0.0.0.0/0"
+    desc2 = "Route Table Rule DRG"
+    cidr2 = "x.x.x.x/x"
   }
 }
 
@@ -224,30 +226,6 @@ variable "drg_attach" {
   default = {
     name = "drg-attach"
     type = "VCN"
-  }
-}
-
-############################################
-# Dynamic Routing Gateway Route Table
-############################################
-
-variable "drg_rt" {
-  description = "Variaveis drg route table"
-  default = {
-    name = "drg-rt"
-    ecmp = "true"
-  }
-}
-
-############################################
-# Dynamic Routing Gateway Route Table Rule
-############################################
-
-variable "drg_rt_rule" {
-  description = "Variaveis drg route table rules"
-  default = {
-    dest = "x.x.x.x/x"
-    type = "CIDR_BLOCK"
   }
 }
 

@@ -38,14 +38,17 @@ resource "oci_core_route_table" "rt" {
   compartment_id = oci_identity_compartment.compartment.id
   vcn_id         = oci_core_vcn.vcn.id
   display_name   = var.rt_public.name
-  dynamic "route_rules" {
-    for_each = [true]
-    content {
-      destination       = var.rt_public.cidr
-      description       = var.rt_public.desc
-      network_entity_id = oci_core_internet_gateway.igw.id
-    }
+  route_rules {
+    destination       = var.rt_public.cidr1
+    description       = var.rt_public.desc1
+    network_entity_id = oci_core_internet_gateway.igw.id
   }
+  route_rules {
+    destination       = var.rt_public.cidr2
+    description       = var.rt_public.desc2
+    network_entity_id = oci_core_drg.drg.id
+  }
+
 }
 
 ############################################

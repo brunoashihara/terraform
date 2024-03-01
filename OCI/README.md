@@ -100,6 +100,7 @@ Praticamente todas as configurações do deploy estão declaradas no arquivo **o
 + **var.compartment.ad** _linha 11_ - Verificar o ID dos Availability Domains para a região;
 + **var.vcn.cidr** _linha 22_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
 + **var.sb_public.cidr** _linha 35_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
++ **var.rt.cidr2** _linha 51_ - Modifique para a faixa de ip onpremises;
 + **var.instance.ad** _linha 98_ - Verificar o ID dos Availability Domains para a região;
 + **var.key.file** _linha 108_ - Nome da chave privada;
 + **var.bucket.namespace** _linha 121_ - Substitua pelo ID encontrado com o comando abaixo;
@@ -114,8 +115,6 @@ Praticamente todas as configurações do deploy estão declaradas no arquivo **o
 ```bash
    oci os ns get
 ```
-
-**OBS: no arquivo *oci_autodb.tf* o resource *oci_database_autonomous_database_backup* está comentado pois o atributo *is_free_tier* não permite configurar o backup**
 
 ## Executar OpenTofu
 

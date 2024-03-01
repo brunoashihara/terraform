@@ -152,6 +152,8 @@ Praticamente todas as configurações do deploy estão declaradas no arquivo **o
 
 **OBS: Aguarde a falha ou a conclusão do apply ou do destroy, em caso de paradas forçadas o OpenTofu perde sua sincronia do tfstate com a realidade do seu ambiente, pode ser corrigido com o comando _tofu refresh_:**
 
+**OBS2: Caso o Autonomous Database executou seu backup automático, ao realizar o comando *tofu destroy --auto-approve* vai falhar na exclusão do *compartment* pois o backup demora algum tempo para ser removido do ambiente, confirme se o Autonomous Database realmente sumiu do seu *compartment* e em caso positivo pesquise por *compartment* e exclua-o manualmente.**
+
 ```bash
    tofu refresh
 ```

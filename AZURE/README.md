@@ -35,26 +35,26 @@ Este projeto cria os seguintes recursos:
    + OpenSSL 1.0.2;
 
 ```bash
-   curl -L https://aka.ms/InstallAzureCli | bash
+curl -L https://aka.ms/InstallAzureCli | bash
 ```
 
 + MacOS
 
 ```bash
-   brew update && brew install azure-cli
+brew update && brew install azure-cli
 ```
 
 + Windows
 
 ```bash
-   winget install -e --id Microsoft.AzureCLI
+winget install -e --id Microsoft.AzureCLI
 ```
 ## Autenticar ao ambiente Azure
 
 1. Execute o comando abaixo e siga os passos para se autenticar:
 
 ```bash
-   az login
+az login
 ``` 
 
 2. Pronto, já está conectado ao seu ambiente **AZURE**!
@@ -79,38 +79,38 @@ Praticamente todas as configurações do deploy estão declaradas no arquivo **a
 1. Para iniciar o OpenTofu navegue até o diretório que contêm o arquivo **main.tf** e execute o seguinte comando:
 
 ```bash
-   tofu init
+tofu init
 ```
 
 2. Observe se não ocorreu erros e execute os comandos para arrumar a formatação e validar os arquivos .tf:
 
 ```bash
-   tofu fmt
-   tofu valdiate
+tofu fmt
+tofu valdiate
 ```
 
 3. Execute o comando abaixo para descrever o planejamento do deploy:
 
 ```bash
-   tofu plan
+tofu plan
 ```
 
 4. Em caso de nenhum erro pode executar o comando abaixo para aplicar os deploys:
 
 ```bash
-   tofu apply --auto-approve
+tofu apply --auto-approve
 ```
 
 5. Para destruir todo o ambiente execute o comando abaixo:
 
 ```bash
-   tofu destroy --auto-approve
+tofu destroy --auto-approve
 ```
 
 **OBS: Aguarde a falha ou a conclusão do apply ou do destroy, em caso de paradas forçadas o OpenTofu perde sua sincronia do tfstate com a realidade do seu ambiente, pode ser corrigido com o comando _tofu refresh_:**
 
 ```bash
-   tofu refresh
+tofu refresh
 ```
 
 Em caso negativo ao tentar sincronizar o status, se for necessário destruir o ambiente este deve ser destruido os recursos de forma manual.

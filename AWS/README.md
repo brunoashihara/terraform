@@ -23,44 +23,44 @@ Este projeto cria os seguintes recursos:
    - dnf
 
    ```bash
-      dnf install unzip -y
+   dnf install unzip -y
    ```
 
    - apt
 
    ```bash
-      apt install unzip -y
+   apt install unzip -y
    ```
 
 2. Seguir a instalação dependendo da sua arquitetura:
    - x86
 
    ```bash
-      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-      unzip awscliv2.zip
-      sudo ./aws/install
+   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+   unzip awscliv2.zip
+   sudo ./aws/install
    ``` 
 
    - ARM
 
    ```bash
-      curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
-      unzip awscliv2.zip
-      sudo ./aws/install
+   curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
+   unzip awscliv2.zip
+   sudo ./aws/install
    ``` 
 
 + MacOS
 
 ```bash
-   curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
-   sudo installer -pkg AWSCLIV2.pkg -target /
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
 ```
 
 + Windows
 
 1. Para realizar a instalação baixe o arquivo MSI do [AWS CLI](https://awscli.amazonaws.com/AWSCLIV2.msi) e execute-o ou rode o seguinte comando no powershell:
 ```bash
-   msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
+msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
 ```
 ## Autenticar ao ambiente AWS
 
@@ -92,38 +92,38 @@ Praticamente todas as configurações do deploy estão declaradas no arquivo **a
 1. Para iniciar o OpenTofu navegue até o diretório que contêm o arquivo **main.tf** e execute o seguinte comando:
 
 ```bash
-   tofu init
+tofu init
 ```
 
 2. Observe se não ocorreu erros e execute os comandos para arrumar a formatação e validar os arquivos .tf:
 
 ```bash
-   tofu fmt
-   tofu valdiate
+tofu fmt
+tofu valdiate
 ```
 
 3. Execute o comando abaixo para descrever o planejamento do deploy:
 
 ```bash
-   tofu plan
+tofu plan
 ```
 
 4. Em caso de nenhum erro pode executar o comando abaixo para aplicar os deploys:
 
 ```bash
-   tofu apply --auto-approve
+tofu apply --auto-approve
 ```
 
 5. Para destruir todo o ambiente execute o comando abaixo:
 
 ```bash
-   tofu destroy --auto-approve
+tofu destroy --auto-approve
 ```
 
 **OBS: Aguarde a falha ou a conclusão do apply ou do destroy, em caso de paradas forçadas o OpenTofu perde sua sincronia do tfstate com a realidade do seu ambiente, pode ser corrigido com o comando _tofu refresh_:**
 
 ```bash
-   tofu refresh
+tofu refresh
 ```
 
 Em caso negativo ao tentar sincronizar o status, se for necessário destruir o ambiente este deve ser destruido os recursos de forma manual.

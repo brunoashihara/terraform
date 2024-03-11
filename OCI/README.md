@@ -23,19 +23,19 @@ Este projeto cria os seguintes recursos:
 
 1. Para realizar a instalação rode o comando abaixo:
 ```bash
-   bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)"
+bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)"
 ```
 
 2. No final da instalação vai ser solicitado adicionar o $PATH, se a resposta padrão não for "Y" digite e aperte enter. Após a instalação rode o comando abaixo para reiniciar o shell: 
 
 ```bash
-   exec -l $SHELL
+exec -l $SHELL
 ```
 
 + MacOS
 
 ```bash
-   brew update && brew install oci-cli
+brew update && brew install oci-cli
 ```
 
 + Windows
@@ -43,10 +43,10 @@ Este projeto cria os seguintes recursos:
 1. A instalação do Windows é para as versões Windows Server:
 
 ```bash
-   Set-ExecutionPolicy RemoteSigned
-   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-   Invoke-WebRequest https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.ps1 -OutFile install.ps1
-   ./install.ps1 -AcceptAllDefaults
+Set-ExecutionPolicy RemoteSigned
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Invoke-WebRequest https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.ps1 -OutFile install.ps1
+./install.ps1 -AcceptAllDefaults
 ```
 
 ## Autenticar ao ambiente OCI
@@ -60,7 +60,7 @@ Este projeto cria os seguintes recursos:
 + GNU/LINUX
 
 ```bash
-   mkdir -p ~/.oci
+mkdir -p ~/.oci
 ```
    + Mova a chave criada para a pasta .oci ou pelo comando **mv** ou por um **WinSCP**.
 
@@ -71,25 +71,24 @@ Este projeto cria os seguintes recursos:
 4. Agora vamos corrigir as permissões da chave com o comando:
 
 ```bash
-   oci setup repair-file-permissions --file CAMINHODACHAVE/oci_api_key.pem
+oci setup repair-file-permissions --file CAMINHODACHAVE/oci_api_key.pem
 ```
 
 4. Clique em **Add** e copie as informações para dentro da pasta **.oci** em um arquivo sem extensão com o nome de **config**. Segue um exemplo abaixo, lembrando de substituir as informações com os que aparecer ao criar a **API key**.
 
 ```bash
-   [DEFAULT]
-   user=ocid1.user.oc1..---------------------------------------------
-   fingerprint=---------------------------------------------
-   tenancy=ocid1.tenancy.oc1..----------------------------------
-   region=------------------
-   key_file=CAMINHODACHAVE\.oci\oci_api_key.pem
-
+[DEFAULT]
+user=ocid1.user.oc1..---------------------------------------------
+fingerprint=---------------------------------------------
+tenancy=ocid1.tenancy.oc1..----------------------------------
+region=------------------
+key_file=CAMINHODACHAVE\.oci\oci_api_key.pem
 ```
 
 5. Por fim, corrigir as permissões da config com o comando:
 
 ```bash
-   oci setup repair-file-permissions --file CAMINHODACHAVE/config
+oci setup repair-file-permissions --file CAMINHODACHAVE/config
 ```
 
 6. Pronto, já está conectado ao seu ambiente **OCI**!
@@ -113,7 +112,7 @@ Praticamente todas as configurações do deploy estão declaradas no arquivo **o
 + **var.ipsec.static** _linha 262_ -Modificar para a faixa de ip onpremises;
 
 ```bash
-   oci os ns get
+oci os ns get
 ```
 
 ## Executar OpenTofu
@@ -121,32 +120,32 @@ Praticamente todas as configurações do deploy estão declaradas no arquivo **o
 1. Para iniciar o OpenTofu navegue até o diretório que contêm o arquivo **main.tf** e execute o seguinte comando:
 
 ```bash
-   tofu init
+tofu init
 ```
 
 2. Observe se não ocorreu erros e execute os comandos para arrumar a formatação e validar os arquivos .tf:
 
 ```bash
-   tofu fmt
-   tofu valdiate
+tofu fmt
+tofu valdiate
 ```
 
 3. Execute o comando abaixo para descrever o planejamento do deploy:
 
 ```bash
-   tofu plan
+tofu plan
 ```
 
 4. Em caso de nenhum erro pode executar o comando abaixo para aplicar os deploys:
 
 ```bash
-   tofu apply --auto-approve
+tofu apply --auto-approve
 ```
 
 5. Para destruir todo o ambiente execute o comando abaixo:
 
 ```bash
-   tofu destroy --auto-approve
+tofu destroy --auto-approve
 ```
 
 **OBS: Aguarde a falha ou a conclusão do apply ou do destroy, em caso de paradas forçadas o OpenTofu perde sua sincronia do tfstate com a realidade do seu ambiente, pode ser corrigido com o comando _tofu refresh_:**
@@ -154,7 +153,7 @@ Praticamente todas as configurações do deploy estão declaradas no arquivo **o
 **OBS2: Caso o Autonomous Database executou seu backup automático, ao realizar o comando *tofu destroy --auto-approve* vai falhar na exclusão do *compartment* pois o backup demora algum tempo para ser removido do ambiente, confirme se o Autonomous Database realmente sumiu do seu *compartment* e em caso positivo pesquise por *compartment* e exclua-o manualmente.**
 
 ```bash
-   tofu refresh
+tofu refresh
 ```
 
 Em caso negativo ao tentar sincronizar o status, se for necessário destruir o ambiente este deve ser destruido os recursos de forma manual.

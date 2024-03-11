@@ -15,10 +15,10 @@ Laboratórios de IaC para os providers AWS, AZURE, GCP e OCI.
 + GNU/Linux
 
 ```bash
-   curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opentofu.sh -o install-opentofu.sh
-   chmod +x install-opentofu.sh
-   ./install-opentofu.sh --install-method standalone
-   rm install-opentofu.sh
+curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opentofu.sh -o install-opentofu.sh
+chmod +x install-opentofu.sh
+./install-opentofu.sh --install-method standalone
+rm install-opentofu.sh
 ```
 
 + Windows PowerShell
@@ -26,15 +26,15 @@ Laboratórios de IaC para os providers AWS, AZURE, GCP e OCI.
 1. No Windows precisa habilitar o uso de scripts tanto com o **RemoteSigned** ou o **Unrestricted**
 
 ```bash
-   Set-ExecutionPolicy RemoteSigned
+Set-ExecutionPolicy RemoteSigned
 ```
 
 2. Para instalar o OpenTofu ele pede para instalar o cosign ou GPG e adicionar o caminho para a instalação, no caso podemos ignorar a verificação com o -skipVerify _não recomendado_
 
 ```bash
-   Invoke-WebRequest -outfile "install-opentofu.ps1" -uri "https://get.opentofu.org/install-opentofu.ps1"
-   & .\install-opentofu.ps1 -installMethod standalone -skipVerify
-   Remove-Item install-opentofu.ps1
+Invoke-WebRequest -outfile "install-opentofu.ps1" -uri "https://get.opentofu.org/install-opentofu.ps1"
+& .\install-opentofu.ps1 -installMethod standalone -skipVerify
+Remove-Item install-opentofu.ps1
 ```
 
 ## Instalação cli do provider

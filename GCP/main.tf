@@ -15,9 +15,9 @@ terraform {
 ############################################
 
 provider "google" {
-  project = var.my_project #nome do projeto
-  region  = var.my_region
-  zone    = var.my_zone
+  project = var.project.name #nome do projeto
+  region  = var.project.region
+  zone    = var.project.zone
 }
 
 ############################################

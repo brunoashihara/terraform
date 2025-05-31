@@ -81,7 +81,7 @@ variable "oci_compute" = {
 # Dynamic Routing Gateway
 ############################################
 
-variables "oci_drg" {
+variable "oci_drg" {
   description = "Dynamic Routing Gateway Variables"
   type = object({
     name = string

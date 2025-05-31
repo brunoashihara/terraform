@@ -12,7 +12,7 @@ Este projeto cria os seguintes recursos de forma modular:
 + RDS;
 + S3;
 + EC2 Linux com ponto de montagem EFS subnet Publica;
-+ EC2 Windows subnet Public;
++ EC2 Windows subnet Publica;
 + DynamoDB;
 
 ## Instalação AWS CLI

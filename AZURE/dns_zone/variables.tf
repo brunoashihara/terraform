@@ -2,7 +2,7 @@
 # DNS ZONE
 ############################################
 
-variavel "azure_dns_zone" {
+variable "azure_dns_zone" {
   description = "DNS Zone Variables"
   type = object({
     name  = "privatelink.file.core.windows.net"

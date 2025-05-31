@@ -109,7 +109,7 @@ variable "azure_postgres" {
 # DNS ZONE
 ############################################
 
-variavel "azure_dns_zone" {
+variable "azure_dns_zone" {
   description = "DNS Zone Variables"
   type = object({
     name  = "privatelink.file.core.windows.net"
@@ -179,7 +179,7 @@ variable "azure_ni" {
 # NETWORK SECURITY GROUPS PRIVATE
 ############################################
 
-azure_nsg_private = {
+variable "azure_nsg_private" {
   description = "Network Security Group Private Variables"
   type = object({
     access    = string

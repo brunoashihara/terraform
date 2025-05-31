@@ -13,22 +13,28 @@ variable "oci_igw" {
 # SUBNET PRIVATE
 ############################################
 
-oci_sb_private = {
-  cidr   = "10.250.120.0/24"
-  name   = "tf-sb-private"
-  public = false
-  label  = "private"
+variable "oci_sb_private" {
+  description = "Subnet Private Variables"
+  type = object({
+    cidr   = string
+    name   = string
+    public = bool
+    label  = string
+  })
 }
 
 ############################################
 # SUBNET PUBLIC
 ############################################
 
-oci_sb_public = {
-  cidr    = "10.250.121.0/24"
-  name    = "tf-sb-public"
-  public  = true
-  label   = "public"
+variable "oci_sb_public" {
+  description = "Subnet Public Variables"
+  type = object({
+    cidr   = string
+    name   = string
+    public = bool
+    label  = string
+  })
 }
 
 ############################################

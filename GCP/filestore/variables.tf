@@ -2,7 +2,7 @@
 # FILESTORE
 ############################################
 
-variables "gcp_filestore" {
+variable "gcp_filestore" {
   description = "Filestore Variables"
   type = object ({
     cap       = number

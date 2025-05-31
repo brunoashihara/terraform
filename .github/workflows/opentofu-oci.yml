@@ -28,7 +28,7 @@ jobs:
       run: tofu init ## -backend=false
     
     - name: OpenTofu Format
-      run: tofu fmt
+      run: tofu fmt -recursive
       
     - name: OpenTofu Format Check
       run: tofu fmt -check -recursive

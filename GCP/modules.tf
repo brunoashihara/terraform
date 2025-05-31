@@ -42,7 +42,7 @@ module "gcp_firestore" {
 ############################################
 
 module "gcp_firewall" {
-  source                = "./modules/firewall"
+  source                = "./firewall"
   gcp_fw_private        = var.gcp_fw_private
   gcp_fw_public         = var.gcp_fw_public
   project_id            = module.gcp_project.project_id

@@ -2,7 +2,7 @@
 # COMPUTE
 ############################################
 
-variable "oci_compute" = {
+variable "oci_compute" {
   description = "Compute Variables"
   type = object({
     ad          = string

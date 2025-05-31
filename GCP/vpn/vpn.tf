@@ -35,9 +35,9 @@ resource "google_compute_forwarding_rule" "tf_fr_esp" {
 
 resource "google_compute_forwarding_rule" "tf_fr_udp500" {
   project     = var.project_id
-  name        = var.gcp_vpn_fr.500_name
-  ip_protocol = var.gcp_vpn_fr.500_prot
-  port_range  = var.gcp_vpn_fr.500_port
+  name        = var.gcp_vpn_fr.name_500
+  ip_protocol = var.gcp_vpn_fr.prot_500
+  port_range  = var.gcp_vpn_fr.port_500
   ip_address  = google_compute_address.tf_vpn_ip.address
   target      = google_compute_vpn_gateway.tf_vpn_gw.id
 }
@@ -48,9 +48,9 @@ resource "google_compute_forwarding_rule" "tf_fr_udp500" {
 
 resource "google_compute_forwarding_rule" "tf_fr_udp4500" {
   project     = var.project_id
-  name        = var.gcp_vpn_fr.4500_name
-  ip_protocol = var.gcp_vpn_fr.4500_prot
-  port_range  = var.gcp_vpn_fr.4500_port
+  name        = var.gcp_vpn_fr.name_4500
+  ip_protocol = var.gcp_vpn_fr.prot_4500
+  port_range  = var.gcp_vpn_fr.port_4500
   ip_address  = google_compute_address.tf_vpn_ip.address
   target      = google_compute_vpn_gateway.tf_vpn_gw.id
 }

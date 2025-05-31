@@ -34,19 +34,6 @@ variable "aws_sg_public" {
 }
 
 ############################################
-# VPC
-############################################
-
-variable "aws_vpc" {
-  description = "VPC Variables"
-  type  = object({
-    cidr      = string
-    igw       = string
-    name      = string
-  })
-}
-
-############################################
 # OUTPUT VARIABLES
 ############################################
 

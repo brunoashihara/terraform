@@ -9,11 +9,11 @@ variable "oci_compute" {
     img         = string
     name        = string
     public      = bool
-    shape = {
+    shape= object({
       ocpus = number
       mem   = number
       name  = string
-    }
+    })
     source_type = string
     type        = string
     user        = string

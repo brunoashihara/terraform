@@ -2,7 +2,7 @@
 # PRIVATE DNS
 ############################################
 
-resource "azurerm_private_dns_zone" " tf_file" {
+resource "azurerm_private_dns_zone" "tf_file" {
   name                = var.azure_dns_zone.name
   resource_group_name = var.resource_group_name
 }

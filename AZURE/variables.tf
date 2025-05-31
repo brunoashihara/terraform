@@ -112,7 +112,7 @@ variable "azure_postgres" {
 variable "azure_dns_zone" {
   description = "DNS Zone Variables"
   type = object({
-    name  = "privatelink.file.core.windows.net"
+    name  = string
   })
 }
 

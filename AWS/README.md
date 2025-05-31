@@ -1,18 +1,18 @@
 # AWS - OpenTofu
 
-Este projeto cria os seguintes recursos:
+Este projeto cria os seguintes recursos de forma modular:
 + Key Pair; 
 + VPC;
 + Subnet Publica e Privada;
 + Internet Gateway;
-+ Route Tables Publica;
-+ Security Group Publica;
-+ Network Access Control List Publica;
-+ EFS;
++ Route Tables Publica e Privada;
++ Security Group Publica e Privada;
++ Network Access Control List Publica e Privada;
++ EFS na subnet Private;
 + RDS;
 + S3;
-+ EC2 Linux com ponto de montagem EFS;
-+ EC2 Windows;
++ EC2 Linux com ponto de montagem EFS subnet Publica;
++ EC2 Windows subnet Public;
 + DynamoDB;
 
 ## Instalação AWS CLI
@@ -79,13 +79,7 @@ msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
 
 ## Alterar variaveis
 
-Praticamente todas as configurações do deploy estão declaradas no arquivo **aws.vars.tf**, interessante modicar as seguinte variaveis para não ocorrer problemas no ambiente:
-+ **var.region.name** _linha 8_ - Recomendado utilizar o passado no comando **aws configure**;
-+ **var.kp.private** _linha 68_ - Nome da chave .pem;
-+ **var.s3_bucket_name** _linha 101_ - Nomes de bucket precisam ser unicos, modifique-o para que não haja erros no deploy;
-+ **var.vpc.cidr** _linha 113_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
-+ **var.sb_public.cidr** _linha 128_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
-+ **var.sb_private.cidr** _linha 136_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
+Antes de fazer o deploy consultar o arquivo **terraform.tfvars** e alterar campos principalmente relacionados a IPs
 
 ## Executar OpenTofu
 
@@ -99,7 +93,7 @@ tofu init
 
 ```bash
 tofu fmt
-tofu valdiate
+tofu validate
 ```
 
 3. Execute o comando abaixo para descrever o planejamento do deploy:

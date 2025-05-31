@@ -1,10 +1,10 @@
 # GCP - OpenTofu
 
-Este projeto cria os seguintes recursos:
+Este projeto cria os seguintes recursos de forma modular:
 + Projeto; 
 + VPC;
-+ Subnet Publica;
-+ Firewall Publica;
++ Subnet Publica e Privada;
++ Firewall Publica e Privada;
 + IP Linux;
 + Compute Linux com NFS montado;
 + Filestore;
@@ -72,16 +72,7 @@ gcloud auth login --no-launch-browser
 
 ## Alterar variaveis
 
-Praticamente todas as configurações do deploy estão declaradas no arquivo **gcp.vars.tf**, interessante modicar as seguinte variaveis para não ocorrer problemas no ambiente:
-+ **var.project.name** _linha 8_ - Nome do projeto;
-+ **var.project.region** _linha 9_ - Região para deploy;
-+ **var.project.zone** _linha 10_ - Zona para deploy;
-+ **var.key.private** _linha 92_ - Nome da chave .pem;
-+ **var.sb_public.ip** _linha 116_ - Modifique a faixa de IP para não sobrepor a do seu ambiente;
-+ **var.stg.name** _linha 169_ - Modifique o nome do Cloud Storage;
-+ **var.vpn.onprem** _linha 187_ - Modifique para o IP publico do seu onpremises para a conexão da VPN;
-+ **var.vpn.onprem_sb** _linha 188_ - Modifique para o faixa IP do seu onpremises para a conexão da VPN;
-+ **var.vpn.key** _linha 189_ - Modifique a sua pré-shared key para conexão da VPN;
+Antes de fazer o deploy consultar o arquivo **terraform.tfvars** e alterar campos principalmente relacionados a IPs
 
 ## Executar OpenTofu
 

@@ -1,0 +1,37 @@
+name: OpenTofu Validation AZURE
+
+on:
+  push:
+    paths:
+      - 'AZURE/**'
+  pull_request:
+    paths:
+      - 'AZURE/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: AZURE
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup OpenTofu
+      uses: opentofu/setup-opentofu@v1
+      with:
+        tofu_version: 1.6.0
+    
+    - name: OpenTofu Init
+      run: tofu init ## -backend=false
+    
+    - name: OpenTofu Format
+      run: tofu fmt -check -recursive
+      
+    - name: OpenTofu Format Check
+      run: tofu fmt -check
+
+    - name: OpenTofu Validate
+      run: tofu validate

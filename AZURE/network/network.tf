@@ -1,0 +1,54 @@
+############################################
+# VIRTUAL NETWORK
+############################################
+
+resource "azurerm_virtual_network" "tf_vn" {
+  name                = var.azure_vn.name
+  resource_group_name = var.resource_group_name
+  location            = var.resource_group_location
+  address_space       = [var.azure_vn.ip]
+}
+
+############################################
+# SUBNET PUBLIC
+############################################
+
+resource "azurerm_subnet" "tf_sb_public" {
+  name                 = var.azure_sb_public.name
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.tf_vn.name
+  address_prefixes     = [var.azure_sb_public.ip]
+}
+
+############################################
+# SUBNET PRIVATE
+############################################
+
+resource "azurerm_subnet" "tf_sb_private" {
+  name                 = var.azure_sb_private.name
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.tf_vn.name
+  address_prefixes     = [var.azure_sb_private.ip]
+}
+
+############################################
+# NETWORK LINUX
+############################################
+
+resource "azurerm_public_ip" "tf_ip_linux" {
+  name                = var.azure_network.linux
+  resource_group_name = var.resource_group_name
+  location            = var.resource_group_location
+  allocation_method   = var.azure_network.alloc
+}
+
+############################################
+# NETWORK WINDOWS
+############################################
+
+resource "azurerm_public_ip" "tf_ip_windows" {
+  name                = var.azure_network.windows
+  resource_group_name = var.resource_group_name
+  location            = var.resource_group_location
+  allocation_method   = var.azure_network.alloc
+}

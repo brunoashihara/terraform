@@ -23,12 +23,3 @@ provider "azurerm" {
     }
   }
 }
-
-############################################
-# RESOURCE GROUP
-############################################
-
-resource "azurerm_resource_group" "teste_rg" {
-  name     = var.rg.name
-  location = var.rg.region
-}

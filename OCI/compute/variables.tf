@@ -34,8 +34,8 @@ variable "mount_ip" {
   type        = string
 }
 
-variable "nsg_id" {
-  description = "nsg ID"
+variable "nsg_public_id" {
+  description = "NSG Public ID"
   type        = string
 }
 

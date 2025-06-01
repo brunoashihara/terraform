@@ -16,7 +16,7 @@ resource "oci_core_instance" "oci01" {
   create_vnic_details {
     subnet_id        = var.sb_public_id
     assign_public_ip = var.oci_compute.public
-    nsg_ids          = [var.nsg_id]
+    nsg_ids          = [var.nsg_public_id]
   }
 
   metadata = {

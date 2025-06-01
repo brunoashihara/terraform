@@ -73,7 +73,7 @@ module "azure_fileshare" {
     sb_private_id           = module.azure_network.sb_private_id
     storage_account_id      = module.azure_storage.storage_account_id
     storage_account_name    = module.azure_storage.storage_account_name
-    depends_on              = [module.azure_resource_group,module.azure_storage]
+    depends_on              = [module.azure_resource_group,module.azure_network,module.azure_storage]
 }
 
 ############################################
@@ -118,7 +118,6 @@ module "azure_nsg" {
     depends_on              = [module.azure_network,module.azure_resource_group]
 }
 
-
 ############################################
 # RESOURCE GROUP
 ############################################
@@ -134,7 +133,7 @@ module "azure_resource_group" {
 
 module "azure_storage" {
     source                  = "./storage"
-    azure_storage           = var.storage
+    azure_storage           = var.azure_storage
     resource_group_location = module.azure_resource_group.resource_group_location
     resource_group_name     = module.azure_resource_group.resource_group_name
     depends_on              = [module.azure_resource_group]
@@ -171,6 +170,7 @@ module "azure_vpn" {
     azure_lng               = var.azure_lng
     azure_network           = var.azure_network
     azure_resource_group    = var.azure_resource_group
+    azure_sb_vpn            = var.azure_sb_vpn
     azure_vng               = var.azure_vng
     azure_vng_connection    = var.azure_vng_connection
     resource_group_location = module.azure_resource_group.resource_group_location

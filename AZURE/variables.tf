@@ -242,7 +242,7 @@ variable "azure_storage" {
 }
 
 ############################################
-# SUBNET
+# SUBNET PRIVATE
 ############################################
 
 variable "azure_sb_private" {
@@ -253,6 +253,10 @@ variable "azure_sb_private" {
   })
 }
 
+############################################
+# SUBNET PUBLIC
+############################################
+
 variable "azure_sb_public" {
   description = "Subnet Public Variables"
   type = object({
@@ -260,6 +264,10 @@ variable "azure_sb_public" {
     name  = string
   })
 }
+
+############################################
+# SUBNET VPN
+############################################
 
 variable "azure_sb_vpn" {
   description = "Subnet VPN Variables"

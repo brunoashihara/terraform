@@ -5,16 +5,12 @@
 variable "azure_nsg_private" {
   description = "Network Security Group Private Variables"
   type = object({
-    name                       = string
-    rule_name                  = string
-    priority                   = number
-    direction                  = string
-    access                     = string
-    protocol                   = string
-    source_address_prefix      = string
-    destination_address_prefix = string
-    source_port_range          = string
-    destination_port_range     = string
+    access    = string
+    any       = string
+    any_name  = string
+    direct    = string
+    name      = string
+    prio      = number
   })
 }
 

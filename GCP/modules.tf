@@ -131,6 +131,7 @@ module "gcp_vpn"{
     gcp_project = var.gcp_project
     gcp_vpc     = var.gcp_vpc
     gcp_vpn     = var.gcp_vpn
+    gcp_vpn_fr  = var.gcp_vpn_fr
     project_id  = module.gcp_project.project_id
     vpc_id      = module.gcp_network.vpc_id
     depends_on  = [module.gcp_network,module.gcp_project]

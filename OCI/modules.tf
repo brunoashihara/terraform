@@ -52,7 +52,9 @@ module "oci_compute" {
 
 module "oci_file" {
     source          = "./file"
+    oci_export      = var.oci_export
     oci_file        = var.oci_file
+    oci_mount       = var.oci_mount
     compartment_id  = module.oci_compartment.compartment_id
     nsg_id          = module.oci_network.nsg_id
     sb_public_id    = module.oci_network.sb_public_id

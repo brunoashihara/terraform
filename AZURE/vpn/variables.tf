@@ -29,6 +29,18 @@ variable "azure_resource_group" {
 }
 
 ############################################
+# SUBNET VPN
+############################################
+
+variable "azure_sb_vpn" {
+  description = "Subnet VPN Variables"
+  type = object({
+    ip    = string
+    name  = string
+  })
+}
+
+############################################
 # VPN
 ############################################
 

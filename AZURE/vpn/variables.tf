@@ -1,4 +1,16 @@
 ############################################
+# LOCAL NETWORK GATEWAY
+############################################
+
+variable "azure_lng" {
+  description = "Local Network Gateway Variables"
+  type = object({
+    gw    = string
+    name  = string
+  })
+}
+
+############################################
 # NETWORK
 ############################################
 

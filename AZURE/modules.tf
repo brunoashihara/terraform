@@ -171,6 +171,7 @@ module "azure_vpn" {
     azure_network           = var.azure_network
     azure_resource_group    = var.azure_resource_group
     azure_sb_vpn            = var.azure_sb_vpn
+    azure_vn                = var.azure_vn
     azure_vng               = var.azure_vng
     azure_vng_connection    = var.azure_vng_connection
     resource_group_location = module.azure_resource_group.resource_group_location

@@ -247,7 +247,7 @@ variable "oci_rt_public" {
     rules = list(object({
       cidr        = string
       description = string
-      target      = string
+      target      = string # "igw" ou "drg"
     }))
   })
 }

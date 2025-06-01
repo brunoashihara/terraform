@@ -231,7 +231,7 @@ azure_nsg_public = {
 azure_resource_group = {
   admin     = "adminuser"
   name      = "tf-rg"
-  onprem    = "x.x.x.x/x"
+  onprem    = "0.0.0.0/0"
   pass      = "trocarsenha"
   region    = "East US"
 }
@@ -320,7 +320,7 @@ azure_vn = {
 ############################################
 
 azure_lng = {
-  gw        = "x.x.x.x"
+  gw        = "0.0.0.0"
   name      = "tf-lng"
 }
 

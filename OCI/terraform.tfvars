@@ -28,7 +28,7 @@ oci_bucket = {
 ############################################
 
 oci_cpe = {
-  ip   = "x.x.x.x"
+  ip   = "0.0.0.0"
   name = "tf-cpe"
 }
 
@@ -109,10 +109,10 @@ oci_igw = {
 ############################################
 
 oci_ipsec = {
-  cpe        = "x.x.x.x"
+  cpe        = "0.0.0.0"
   ident_type = "IP_ADDRESS"
   name       = "ipsec"
-  static     = ["x.x.x.x/x"]
+  static     = ["0.0.0.0/0"]
 }
 
 ############################################
@@ -204,12 +204,13 @@ oci_rt_public = {
       target      = "igw"
     },
     {
-      cidr        = "x.x.x.x/x"
+      cidr        = "0.0.0.0/0"
       description = "Route Table Rule DRG"
       target      = "drg"
     }
   ]
 }
+
 
 ############################################
 # SUBNET PRIVATE

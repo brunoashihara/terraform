@@ -68,6 +68,10 @@ module "azure_dns_zone" {
 module "azure_fileshare" {
     source                  = "./fileshare"
     azure_fileshare         = var.azure_fileshare
+    resource_group_location = module.azure_resource_group.resource_group_location
+    resource_group_name     = module.azure_resource_group.resource_group_name
+    sb_private_id           = module.azure_network.sb_private_id
+    storage_account_id      = module.azure_storage.storage_account_id
     storage_account_name    = module.azure_storage.storage_account_name
     depends_on              = [module.azure_resource_group,module.azure_storage]
 }

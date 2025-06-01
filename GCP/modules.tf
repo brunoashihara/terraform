@@ -96,7 +96,6 @@ module "gcp_network" {
 module "gcp_project"{
     source      = "./project"
     gcp_project = var.gcp_project
-    gcp_labels  = var.gcp_labels
 }
 
 ############################################

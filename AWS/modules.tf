@@ -54,7 +54,7 @@ module "aws_nacl" {
     sb_private_id       = module.aws_vpc.sb_private_id
     sb_public_id        = module.aws_vpc.sb_public_id
     vpc_id              = module.aws_vpc.vpc_id
-    depends_on          = [module.vpc]
+    depends_on          = [module.aws_vpc]
 }
 
 ############################################

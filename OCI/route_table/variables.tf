@@ -11,7 +11,7 @@ variable "oci_rt_private" {
 
 ############################################
 # ROUTE TABLE PUBLIC
-############################################
+############################################ 
 
 variable "oci_rt_public" {
   description = "Route Table Public Variables"
@@ -20,7 +20,7 @@ variable "oci_rt_public" {
     rules = list(object({
       cidr        = string
       description = string
-      target_id   = string
+      target      = string # "igw" ou "drg"
     }))
   })
 }

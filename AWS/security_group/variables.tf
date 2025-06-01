@@ -4,10 +4,20 @@
 
 variable "aws_sg_private" {
   description = "Security Group Private Variables"
-  type  = object({
-    all       = number
-    name      = string
-    protocol  = string
+  type = object({
+    name    = string
+    ingress = list(object({
+      from_port   = number
+      to_port     = number
+      protocol    = string
+      cidr_blocks = list(string)
+    }))
+    egress = list(object({
+      from_port   = number
+      to_port     = number
+      protocol    = string
+      cidr_blocks = list(string)
+    }))
   })
 }
 
@@ -17,19 +27,20 @@ variable "aws_sg_private" {
 
 variable "aws_sg_public" {
   description = "Security Group Public Variables"
-  type  = object({
-    all       = number
-    coringa   = string
-    icmp      = string
-    name      = string
-    nfs       = number
-    protocol  = string
-    rdp       = number
-    ssh       = number
-    tcp       = string
-    udp       = string
-    web       = number
-    web_ssl   = number
+  type = object({
+    name    = string
+    ingress = list(object({
+      from_port   = number
+      to_port     = number
+      protocol    = string
+      cidr_blocks = list(string)
+    }))
+    egress = list(object({
+      from_port   = number
+      to_port     = number
+      protocol    = string
+      cidr_blocks = list(string)
+    }))
   })
 }
 

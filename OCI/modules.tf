@@ -56,7 +56,7 @@ module "oci_file" {
     oci_file        = var.oci_file
     oci_mount       = var.oci_mount
     compartment_id  = module.oci_compartment.compartment_id
-    nsg_id          = module.oci_network.nsg_id
+    nsg_id          = module.oci_nsg.nsg_id
     sb_public_id    = module.oci_network.sb_public_id
     depends_on      = [module.oci_compartment,module.oci_network]
 }

@@ -25,7 +25,7 @@ resource "oci_core_network_security_group" "tf_nsg_public" {
 resource "oci_core_network_security_group_security_rule" "nsg_private_ingress" {
   for_each = { for idx, rule in var.oci_nsg_private.ingress_rules : idx => rule }
 
-  network_security_group_id = oci_core_network_security_group.nsg_private.id
+  network_security_group_id = oci_core_network_security_group.tf_nsg_private.id
   direction                 = "INGRESS"
   protocol                  = each.value.protocol
   source_type               = each.value.source_type
@@ -56,7 +56,7 @@ resource "oci_core_network_security_group_security_rule" "nsg_public_ingress" {
 resource "oci_core_network_security_group_security_rule" "nsg_private_egress" {
   for_each = { for idx, rule in var.oci_nsg_private.egress_rules : idx => rule }
 
-  network_security_group_id = oci_core_network_security_group.nsg_private.id
+  network_security_group_id = oci_core_network_security_group.tf_nsg_private.id
   direction                 = "EGRESS"
   protocol                  = each.value.protocol
   destination_type          = each.value.destination_type
@@ -72,7 +72,7 @@ resource "oci_core_network_security_group_security_rule" "nsg_private_egress" {
 resource "oci_core_network_security_group_security_rule" "nsg_public_egress" {
   for_each = { for idx, rule in var.oci_nsg_public.egress_rules : idx => rule }
 
-  network_security_group_id = oci_core_network_security_group.nsg_public.id
+  network_security_group_id = oci_core_network_security_group.tf_nsg_public.id
   direction                 = "EGRESS"
   protocol                  = each.value.protocol
   destination_type          = each.value.destination_type

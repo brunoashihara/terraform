@@ -108,11 +108,11 @@ resource "azurerm_windows_virtual_machine" "azure02" {
 ############################################
 
 resource "azurerm_virtual_machine_extension" "powershell" {
-  name                 = var.vm_windows.ext1
+  name                 = var.azure_vm_windows.ext1
   virtual_machine_id   = azurerm_windows_virtual_machine.azure02.id
-  publisher            = var.vm_windows.ext1_pub
-  type                 = var.vm_windows.ext1_type
-  type_handler_version = var.vm_windows.ext1_vers
+  publisher            = var.azure_vm_windows.ext1_pub
+  type                 = var.azure_vm_windows.ext1_type
+  type_handler_version = var.azure_vm_windows.ext1_vers
 
   protected_settings = <<SETTINGS
   {

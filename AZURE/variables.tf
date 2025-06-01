@@ -50,7 +50,7 @@ variable "azure_cosmodb" {
 }
 
 ############################################
-# DATABASE
+# DATABASE FIREWALL
 ############################################
 
 variable "azure_dbs_fw" {
@@ -58,50 +58,6 @@ variable "azure_dbs_fw" {
   type = object({
     fin = string
     ini = string
-  })
-}
-
-variable "azure_mssql" {
-  description = "MSSQL Variables"
-  type = object({
-    db_col    = string
-    db_lic    = string
-    db_name   = string
-    db_size   = number
-    db_sku    = string
-    fw_name   = string
-    name      = string
-    version   = string
-  })
-}
-
-variable "azure_mysql" {
-  description = "MySQL Variables"
-  type = object({
-    db_char   = string
-    db_col    = string
-    db_name   = string
-    fw_name   = string
-    name      = string
-    sku       = string
-    stg       = number
-    tls       = string
-    version   = string
-  })
-}
-
-variable "azure_postgres" {
-  description = "Postgres Variables"
-  type = object({
-    db_char   = string
-    db_col    = string
-    db_name   = string
-    fw_name   = string
-    name      = string
-    sku       = string
-    ssl       = string
-    stg       = number
-    version   = string
   })
 }
 
@@ -143,6 +99,55 @@ variable "azure_key" {
     private   = string
     perm      = string
     ssh       = string
+  })
+}
+
+############################################
+# LOCAL NETWORK GATEWAY
+############################################
+
+variable "azure_lng" {
+  description = "Local Network Gateway Variables"
+  type = object({
+    gw    = string
+    name  = string
+  })
+}
+
+############################################
+# MSSQL
+############################################
+
+variable "azure_mssql" {
+  description = "MSSQL Variables"
+  type = object({
+    db_col    = string
+    db_lic    = string
+    db_name   = string
+    db_size   = number
+    db_sku    = string
+    fw_name   = string
+    name      = string
+    version   = string
+  })
+}
+
+############################################
+# MYSQL
+############################################
+
+variable "azure_mysql" {
+  description = "MySQL Variables"
+  type = object({
+    db_char   = string
+    db_col    = string
+    db_name   = string
+    fw_name   = string
+    name      = string
+    sku       = string
+    stg       = number
+    tls       = string
+    version   = string
   })
 }
 
@@ -220,6 +225,25 @@ variable "azure_nsg_public" {
 }
 
 ############################################
+# POSTGRES
+############################################
+
+variable "azure_postgres" {
+  description = "Postgres Variables"
+  type = object({
+    db_char   = string
+    db_col    = string
+    db_name   = string
+    fw_name   = string
+    name      = string
+    sku       = string
+    ssl       = string
+    stg       = number
+    version   = string
+  })
+}
+
+############################################
 # RESOURCE GROUP
 ############################################
 
@@ -284,7 +308,7 @@ variable "azure_sb_vpn" {
 }
 
 ############################################
-# VIRTUAL MACHINE
+# VIRTUAL MACHINE LINUX
 ############################################
 
 variable "azure_vm_linux" {
@@ -302,6 +326,10 @@ variable "azure_vm_linux" {
     version   = string
   })
 }
+
+############################################
+# VIRTUAL MACHINE WINDOWS
+############################################
 
 variable "azure_vm_windows" {
   description = "Virtual Machine Windows Variables"
@@ -335,16 +363,8 @@ variable "azure_vn" {
 }
 
 ############################################
-# VPN
+# VIRTUAL NETWORK GATEWAY
 ############################################
-
-variable "azure_lng" {
-  description = "Local Network Gateway Variables"
-  type = object({
-    gw    = string
-    name  = string
-  })
-}
 
 variable "azure_vng" {
   description = "Virtual Network Gateway Variables"
@@ -357,6 +377,10 @@ variable "azure_vng" {
     vtype     = string
   })
 }
+
+############################################
+# VIRTUAL NETWORK GATEWAY CONNECTION
+############################################
 
 variable "azure_vng_connection" {
   description = "Virtual Network Gateway Connection Variables"

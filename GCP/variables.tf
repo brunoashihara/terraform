@@ -107,6 +107,22 @@ variable "gcp_key" {
 }
 
 ############################################
+# POSTGRES
+############################################
+
+variable "gcp_postgres" {
+  description = "Postgres Variables"
+  type = object({
+    auth      = string
+    name      = string
+    pass      = string
+    tier      = string
+    user      = string
+    version   = string
+  })
+}
+
+############################################
 # PROJECT
 ############################################
 
@@ -123,18 +139,6 @@ variable "gcp_project" {
 ############################################
 # SQL
 ############################################
-
-variable "gcp_postgres" {
-  description = "Postgres Variables"
-  type = object({
-    auth      = string
-    name      = string
-    pass      = string
-    tier      = string
-    user      = string
-    version   = string
-  })
-}
 
 variable "gcp_sql" {
   description = "SQL Variables"
@@ -210,6 +214,10 @@ variable "gcp_vpn" {
     tunnel    = string
   })
 }
+
+############################################
+# VPN FORWARD RULE
+############################################
 
 variable "gcp_vpn_fr" {
   description = "VPN FR Variables"

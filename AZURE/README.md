@@ -1,28 +1,21 @@
 # AZURE - OpenTofu
 
 Este projeto cria os seguintes recursos de forma modular:
-+ Resource Group; 
-+ VN;
-+ Subnet Publica e Privada;
-+ IP Publico Linux;
-+ IP Publico Windows;
-+ Network Interface Linux;
-+ Network Interface Windows;
-+ Container Blob;
-+ Container Group;
-+ Network Security Group Publica e Privada;
-+ Azure SQL MSSQL;
-+ Azure SQL POSTGRES;
-+ Azure SQL MYSQL;
-+ Azure Storage Account;
-+ Chave Publica e Privada;
-+ VM Linux com NFS montado na subnet Publica;
-+ VM WIndows na subnet Publica **em teste para montar ao subir com o terraform**;
-+ CosmoDB;
-+ IP Publico VPN;
-+ Subnet VPN;
-+ Virtual Network Gateway;
-+ Local Network Gateway;
++ Blob;
++ Container;
++ Cosmodb;
++ Mysql;
++ Mssql;
++ Postgres;
++ DNS Zone para acesso privado do fileshare;
++ FIleshare pela subnet privado;
++ Chave de acesso pem;
++ Vnet com subnet privado e publico;
++ NSG privado e publico;
++ Resource Group para neste deploy;
++ Storage Account;
++ VM linux (montado fileshare) e windows (em teste a montagem) na subnet publico;
++ VPN configurada faltando apenas modificar dados do onpremises;
 
 ## Instalação Azure CLI
 

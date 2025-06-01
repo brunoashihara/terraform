@@ -41,6 +41,10 @@ variable "gcp_vpn" {
   })
 }
 
+############################################
+# VPN FORWARD RULE
+############################################
+
 variable "gcp_vpn_fr" {
   description = "VPN FR Variables"
   type = object({

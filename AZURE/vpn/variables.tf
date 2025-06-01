@@ -41,16 +41,20 @@ variable "azure_sb_vpn" {
 }
 
 ############################################
-# VPN
+# VIRTUAL NETWORK
 ############################################
 
-variable "azure_lng" {
-  description = "Local Network Gateway Variables"
+variable "azure_vn" {
+  description = "Virtual Network Variables"
   type = object({
-    gw    = string
+    ip    = string
     name  = string
   })
 }
+
+############################################
+# VIRTUAL NETWORK GATEWAY
+############################################
 
 variable "azure_vng" {
   description = "Virtual Network Gateway Variables"
@@ -63,6 +67,10 @@ variable "azure_vng" {
     vtype     = string
   })
 }
+
+############################################
+# VIRTUAL NETWORK GATEWAY CONNECTION
+############################################
 
 variable "azure_vng_connection" {
   description = "Virtual Network Gateway Connection Variables"

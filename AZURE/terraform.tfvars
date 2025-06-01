@@ -41,13 +41,17 @@ azure_cosmodb = {
 }
 
 ############################################
-# DATABASE
+# DATABASE FIREWALL
 ############################################
 
 azure_dbs_fw = {
   fin    = "255.255.255.255"
   ini    = "0.0.0.0/0"
 }
+
+############################################
+# MSSQL
+############################################
 
 azure_mssql = {
   db_col    = "SQL_Latin1_General_CP1_CI_AS"
@@ -60,6 +64,10 @@ azure_mssql = {
   version   = "12.0"
 }
 
+############################################
+# MYSQL
+############################################
+
 azure_mysql = {
   db_char   = "utf8"
   db_col    = "utf8_unicode_ci"
@@ -71,6 +79,10 @@ azure_mysql = {
   tls       = "TLS1_2"
   version   = "5.7"
 }
+
+############################################
+# POSTGRES
+############################################
 
 azure_postgres = {
   db_char   = "UTF8"
@@ -113,6 +125,15 @@ azure_key = {
   private   = "azure.pem"
   perm      = "0600"
   ssh       = "tf-azure-key"
+}
+
+############################################
+# LOCAL NETWORK GATEWAY
+############################################
+
+azure_lng = {
+  gw        = "0.0.0.0"
+  name      = "tf-lng"
 }
 
 ############################################
@@ -274,7 +295,7 @@ azure_sb_vpn = {
 }
 
 ############################################
-# VIRTUAL MACHINE
+# VIRTUAL MACHINE LINUX
 ############################################
 
 azure_vm_linux = {
@@ -289,6 +310,10 @@ azure_vm_linux = {
   type      = "Standard_LRS"
   version   = "latest"
 }
+
+############################################
+# VIRTUAL MACHINE WINDOWS
+############################################
 
 azure_vm_windows = {
   cache     = "ReadWrite"
@@ -316,13 +341,8 @@ azure_vn = {
 }
 
 ############################################
-# VPN
+# VIRTUAL NETWORK GATEWAY
 ############################################
-
-azure_lng = {
-  gw        = "0.0.0.0"
-  name      = "tf-lng"
-}
 
 azure_vng = {
   alloc     = "Dynamic"
@@ -332,6 +352,10 @@ azure_vng = {
   type      = "Vpn"
   vtype     = "RouteBased"
 }
+
+############################################
+# VIRTUAL NETWORK GATEWAY CONNECTION
+############################################
 
 azure_vng_connection = {
   dh        = "DHGroup2"

@@ -1,21 +1,15 @@
 # OCI - OpenTofu
 
 Este projeto cria os seguintes recursos de forma modular:
-+ Chave Privada e Publica;
-+ Compartment; 
-+ VCN;
-+ Subnet Publica e Privada;
-+ Internet Gateway;
-+ Route Tables Publica e Privada;
-+ Network Security Group Public e Privada;
-+ Network Security Group Rules Public e Privada;
-+ Object Storage;
-+ File Storage;
-+ Mount Target;
-+ Export;
-+ Instance Linux com nfs montado;
-+ Autonomous Database;
-+ Autonomous Database Backup;
++ AutonomousDB;
++ Bucket; 
++ Compartment para usar neste deploy;
++ Compute linux (montado o file) na subnet publico;
++ Chave de acesso pem;
++ VCN com uma subnet privado e uma publico;
++ NSG privado e publico;
++ Route Table para subnet privado e publico;
++ VPN configurada faltando apenas modificar dados do onpremises;
 
 ## Instalação OCI CLI
 

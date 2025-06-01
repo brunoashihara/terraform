@@ -1,4 +1,20 @@
 ############################################
+# POSTGRES
+############################################
+
+variable "gcp_postgres" {
+  description = "Postgres Variables"
+  type = object({
+    auth      = string
+    name      = string
+    pass      = string
+    tier      = string
+    user      = string
+    version   = string
+  })
+}
+
+############################################
 # PROJECT
 ############################################
 
@@ -15,18 +31,6 @@ variable "gcp_project" {
 ############################################
 # SQL
 ############################################
-
-variable "gcp_postgres" {
-  description = "Postgres Variables"
-  type = object({
-    auth      = string
-    name      = string
-    pass      = string
-    tier      = string
-    user      = string
-    version   = string
-  })
-}
 
 variable "gcp_sql" {
   description = "SQL Variables"

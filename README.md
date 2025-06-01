@@ -7,6 +7,13 @@ Laboratórios de IaC para os providers AWS, AZURE, GCP e OCI.
 1. Instalação OpenTofu;
 2. Instalação cli do provider;
 3. Modificar variaveis do terraform;
+4. Caso use todo o ambiente como modulo o main.tf está criado na raiz, o que faltaria é copiar as variaveis nos modulos e tfvars como os exemplos abaixo:
+    + **azure/variables.tf** para a raiz como **azure_vars.tf**;
+    + **azure/terraform.tfvar**s para a raiz como **azure.tfvars**;
+5. Executar o tofu apply referenciando os tfvars pois ele lê apenas um arquivo (terraform.tfvars) e se tiver com outro nome ele não vai ler;
+```bash 
+tofu apply -var-file="aws.tfvars" -var-file="azure.tfvars" -var-file="gcp.tfvars" -var-file="oci.tfvars"
+```
 
 **Por experiência recomendo o uso de ambiente GNU/Linux pois o Windows e Antvírus podem invalidar e acusar as instalações como maliciosas. Em caso de uso do Windows podemos usar o [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install)**
 

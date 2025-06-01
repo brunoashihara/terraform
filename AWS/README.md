@@ -1,19 +1,16 @@
 # AWS - OpenTofu
 
 Este projeto cria os seguintes recursos de forma modular:
-+ Key Pair; 
-+ VPC;
-+ Subnet Publica e Privada;
-+ Internet Gateway;
-+ Route Tables Publica e Privada;
-+ Security Group Publica e Privada;
-+ Network Access Control List Publica e Privada;
-+ EFS na subnet Private;
-+ RDS;
-+ S3;
-+ EC2 Linux com ponto de montagem EFS subnet Publica;
-+ EC2 Windows subnet Publica;
 + DynamoDB;
++ EC2 Linux (com um EFS montado) e Windows na subnet publico; 
++ EFS na subnet privado;
++ Chave de acesso pem;
++ NACL para subnet privado e publico;
++ RDS;
++ Route Table para subnet privado e publico;
++ S3;
++ Security Group privado e publico;
++ VPC com uma subnet privado e uma publico;
 
 ## Instalação AWS CLI
 

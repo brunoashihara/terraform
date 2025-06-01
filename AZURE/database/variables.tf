@@ -1,5 +1,5 @@
 ############################################
-# DATABASE
+# DATABASE FIREWALL
 ############################################
 
 variable "azure_dbs_fw" {
@@ -9,6 +9,10 @@ variable "azure_dbs_fw" {
     ini = string
   })
 }
+
+############################################
+# MSSQL
+############################################
 
 variable "azure_mssql" {
   description = "MSSQL Variables"
@@ -24,6 +28,10 @@ variable "azure_mssql" {
   })
 }
 
+############################################
+# MYSQL
+############################################
+
 variable "azure_mysql" {
   description = "MySQL Variables"
   type = object({
@@ -38,6 +46,10 @@ variable "azure_mysql" {
     version   = string
   })
 }
+
+############################################
+# POSTGRES
+############################################
 
 variable "azure_postgres" {
   description = "Postgres Variables"

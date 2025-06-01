@@ -115,6 +115,19 @@ gcp_key = {
 }
 
 ############################################
+# POSTGRES
+############################################
+
+gcp_postgres = {
+  auth      = "tf-an"
+  name      = "tf-db-instance"
+  pass      = "trocarsenha"
+  tier      = "db-f1-micro"
+  user      = "tf-user"
+  version   = "POSTGRES_14"
+}
+
+############################################
 # PROJECT
 ############################################
 
@@ -128,15 +141,6 @@ gcp_project = {
 ############################################
 # SQL
 ############################################
-
-gcp_postgres = {
-  auth      = "tf-an"
-  name      = "tf-db-instance"
-  pass      = "trocarsenha"
-  tier      = "db-f1-micro"
-  user      = "tf-user"
-  version   = "POSTGRES_14"
-}
 
 gcp_sql = {
   name      = "tf-db"
@@ -194,6 +198,10 @@ gcp_vpn = {
   rt_prio   = 1000
   tunnel    = "tf-tunnel"
 }
+
+############################################
+# VPN FORWARD RULE
+############################################
 
 gcp_vpn_fr = {
   4500_name = "tf-fr-4500"

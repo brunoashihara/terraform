@@ -1,23 +1,17 @@
 # GCP - OpenTofu
 
 Este projeto cria os seguintes recursos de forma modular:
-+ Projeto; 
-+ VPC;
-+ Subnet Publica e Privada;
-+ Firewall Publica e Privada;
-+ IP Linux;
-+ Compute Linux com NFS montado;
-+ Filestore;
-+ Firestore;
++ Compute linux (com filestore montado) na subnet publico;
++ Filestore na subnet privado;
++ firestore;
++ Firewall privado e publico;
 + GKE;
-+ Chave privada e publica;
-+ Cloud SQL postgres;
-+ Cloud Storage;
-+ VPN Gateway;
-+ IP VPN;
-+ Forwarding Rules;
-+ VPN Tunnels;
-+ VPN Route Table;
++ Chave de acesso pem;
++ VPC com subnet privado e publico;
++ Projeto para usar neste deploy;
++ SQl;
++ Storage;
++ VPN configurada faltando apenas modificar dados do onpremises;
 
 ## Instalação GCP CLI
 

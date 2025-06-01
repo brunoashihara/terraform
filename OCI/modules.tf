@@ -39,11 +39,11 @@ module "oci_compute" {
     oci_compute         = var.oci_compute
     compartment_id      = module.oci_compartment.compartment_id
     mount_ip            = module.oci_file.mount_ip
-    nsg_public_id       = module.oci_network.nsg_public_id
+    nsg_public_id       = module.oci_nsg.nsg_public_id
     private_key         = module.oci_key.private_key
     public_key_openssh  = module.oci_key.public_key_openssh
     sb_public_id        = module.oci_network.sb_public_id
-    depends_on          = [module.oci_compartment,module.oci_file,module.oci_network,module.oci_key]
+    depends_on          = [module.oci_compartment,module.oci_file,module.oci_key,module.oci_network,module.oci_nsg]
 }
 
 ############################################

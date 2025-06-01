@@ -15,7 +15,7 @@ resource "google_storage_bucket" "tf_storage" {
 ############################################
 
 resource "google_storage_bucket_iam_member" "member" {
-  bucket = google_storage_bucket.teste_storage.name
+  bucket = google_storage_bucket.tf_storage.name
   role   = var.gcp_storage.role
   member = var.gcp_storage.entity
 }

@@ -2,6 +2,10 @@
 # OUTPUT
 ############################################
 
+output "blob_endpoint" {
+  value = azurerm_storage_account.tf_sa.primary_blob_endpoint
+}
+
 output "storage_account_id" {
   value = azurerm_storage_account.tf_sa.id
 }

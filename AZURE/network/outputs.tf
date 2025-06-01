@@ -11,11 +11,11 @@ output "linux_public_ip_id" {
 }
 
 output "sb_private_id" {
-  value = azurerm_subnet.sb_private.id
+  value = azurerm_subnet.tf_sb_private.id
 }
 
 output "sb_public_id" {
-  value = azurerm_subnet.sb_public.id
+  value = azurerm_subnet.tf_sb_public.id
 }
 
 output "virtual_network_id" {

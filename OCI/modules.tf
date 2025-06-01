@@ -139,7 +139,10 @@ module "oci_route_table" {
 
 module "oci_vpn" {
     source          = "./vpn"
-    oci_vpn         = var.oci_vpn
+    oci_cpe         = var.oci_cpe
+    oci_drg         = var.oci_drg
+    oci_drg_attach  = var.oci_drg_attach
+    oci_ipsec       = var.oci_ipsec
     compartment_id  = module.oci_compartment.compartment_id
     vcn_id          = module.oci_network.vcn_id
     depends_on      = [module.oci_compartment,module.oci_network]

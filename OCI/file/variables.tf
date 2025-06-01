@@ -42,12 +42,12 @@ variable "compartment_id" {
   type        = string
 }
 
-variable "nsg_id" {
-  description = "nsg ID"
+variable "nsg_private_id" {
+  description = "NSG Private ID"
   type        = string
 }
 
-variable "sb_public_id" {
-  description = "Subnet ID"
+variable "sb_private_id" {
+  description = "Subnet Private ID"
   type        = string
 }

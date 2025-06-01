@@ -15,9 +15,9 @@ resource "oci_file_storage_file_system" "tf_file" {
 resource "oci_file_storage_mount_target" "tf_mount" {
   availability_domain = var.oci_mount.ad
   compartment_id      = var.compartment_id
-  subnet_id           = var.sb_public_id
+  subnet_id           = var.sb_private_id
   display_name        = var.oci_mount.name
-  nsg_ids             = [var.nsg_id]
+  nsg_ids             = [var.nsg_private_id]
 }
 
 ############################################

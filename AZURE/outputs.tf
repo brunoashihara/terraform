@@ -3,7 +3,7 @@
 ############################################
 
 output "blob" {
-  value = module.azure_blob.blob_endpoint
+  value = module.azure_storage.blob_endpoint
 }
 
 output "container" {

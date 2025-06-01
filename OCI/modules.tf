@@ -93,7 +93,7 @@ module "oci_nsg" {
   source          = "./nsg"
   oci_nsg_private = var.oci_nsg_private
   oci_nsg_public  = var.oci_nsg_public
-  compartment_id  = var.compartment_id
+  compartment_id  = module.oci_compartment.compartment_id
   vcn_id          = module.oci_network.vcn_id
   depends_on      = [module.oci_compartment,module.oci_network]
 }

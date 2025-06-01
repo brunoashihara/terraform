@@ -8,7 +8,7 @@ resource "azurerm_network_interface" "tf_ni_linux" {
   resource_group_name = var.resource_group_name
   ip_configuration {
     name                          = var.azure_ni.name
-    subnet_id                     = sb_public_id
+    subnet_id                     = var.sb_public_id
     private_ip_address_allocation = var.azure_ni.alloc
     public_ip_address_id          = var.linux_public_ip_id
   }
@@ -24,7 +24,7 @@ resource "azurerm_network_interface" "tf_ni_windows" {
   resource_group_name = var.resource_group_name
   ip_configuration {
     name                          = var.azure_ni.name
-    subnet_id                     = sb_public_id
+    subnet_id                     = var.sb_public_id
     private_ip_address_allocation = var.azure_ni.alloc
     public_ip_address_id          = var.windows_public_ip_id
   }

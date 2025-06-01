@@ -47,3 +47,17 @@ variable "oci_nsg_public" {
     }))
   })
 }
+
+############################################
+# OUTPUT VARIABLES
+############################################
+
+variable "compartment_id" {
+  description = "Compartment ID"
+  type        = string
+}
+
+variable "vcn_id" {
+  description = "VCN ID"
+  type        = string
+}

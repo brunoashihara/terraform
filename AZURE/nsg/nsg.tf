@@ -23,15 +23,16 @@ resource "azurerm_network_security_group" "tf_sg_public" {
 ###########################################
 
 resource "azurerm_network_security_rule" "tf_sg_private_rule" {
-  name                        = var.azure_nsg_private.rule_name
-  priority                    = var.azure_nsg_private.priority
-  direction                   = var.azure_nsg_private.direction
-  access                      = var.azure_nsg_private.access
-  protocol                    = var.azure_nsg_private.protocol
-  source_port_range           = var.azure_nsg_private.source_port_range
-  destination_port_range      = var.azure_nsg_private.destination_port_range
-  source_address_prefix       = var.azure_nsg_private.source_address_prefix
-  destination_address_prefix  = var.azure_nsg_private.destination_address_prefix
+  for_each                    = var.azure_nsg_private.rules
+  name                        = each.value.name
+  priority                    = each.value.priority
+  direction                   = each.value.direction
+  access                      = each.value.access
+  protocol                    = each.value.protocol
+  source_port_range           = each.value.source_port_range
+  destination_port_range      = each.value.destination_port_range
+  source_address_prefix       = each.value.source_address_prefix
+  destination_address_prefix  = each.value.destination_address_prefix
   resource_group_name         = var.resource_group_name
   network_security_group_name = azurerm_network_security_group.tf_sg_private.name
 }
@@ -41,8 +42,7 @@ resource "azurerm_network_security_rule" "tf_sg_private_rule" {
 ############################################
 
 resource "azurerm_network_security_rule" "tf_sg_public_rules" {
-  for_each = var.azure_nsg_public.rules
-
+  for_each                    = var.azure_nsg_public.rules
   name                        = each.value.name
   priority                    = each.value.priority
   direction                   = each.value.direction

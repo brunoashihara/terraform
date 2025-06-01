@@ -103,11 +103,12 @@ module "gcp_project"{
 ############################################
 
 module "gcp_sql"{
-    source      = "./sql"
-    gcp_project = var.gcp_project
-    gcp_sql     = var.gcp_sql
-    project_id  = module.gcp_project.project_id
-    depends_on  = [module.gcp_project]
+    source          = "./sql"
+    gcp_project     = var.gcp_project
+    gcp_sql         = var.gcp_sql
+    gcp_postgres    = var.gcp_postgres
+    project_id      = module.gcp_project.project_id
+    depends_on      = [module.gcp_project]
 }
 
 ############################################

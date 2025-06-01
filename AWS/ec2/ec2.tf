@@ -3,7 +3,7 @@
 ############################################
 
 resource "time_sleep" "wait_120_seconds" {
-  create_duration = var.ec2.li_sleep
+  create_duration = var.aws_ec2.li_sleep
 }
 
 

@@ -101,13 +101,16 @@ module "oci_nsg" {
 ############################################
 
 locals {
+  oci_rt_targets = {
+    igw = module.oci_network.igw_id
+    drg = module.oci_vpn.drg_id
+  }
+
   oci_rt_public_rules = [
     for rule in var.oci_rt_public.rules : {
       cidr        = rule.cidr
       description = rule.description
-      target_id   = rule.target == "igw" ? module.oci_network.igw_id :
-                    rule.target == "drg" ? module.oci_vpn.drg_id :
-                    null
+      target_id   = lookup(local.oci_rt_targets, rule.target, null)
     }
   ]
 }

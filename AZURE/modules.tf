@@ -109,8 +109,8 @@ module "azure_network" {
 
 module "azure_nsg" {
     source                  = "./nsg"
-    azure_sg_private        = var.azure_sg_private
-    azure_sg_public         = var.azure_sg_public
+    azure_nsg_private        = var.azure_nsg_private
+    azure_nsg_public         = var.azure_nsg_public
     resource_group_location = module.azure_resource_group.resource_group_location
     resource_group_name     = module.azure_resource_group.resource_group_name
     sb_private_id           = module.azure_network.sb_private_id

@@ -10,6 +10,7 @@ variable "gcp_compute" {
     li_name = string
     li_type = string
     size    = number
+    tags    = list(string)
     type    = string
     wi_img  = string
     wi_ip   = string
@@ -25,10 +26,9 @@ variable "gcp_compute" {
 variable "gcp_project" {
   description = "Project Variables"
   type = object({
-    coringa = string
-    name    = string
-    region  = string
-    zone    = string
+    name   = string
+    region = string
+    zone   = string
   })
 }
 

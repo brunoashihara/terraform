@@ -3,6 +3,8 @@
 ############################################
 
 resource "oci_core_instance" "oci01" {
+  # checkov:skip=CKV_OCI_4: Boot volume in-transit encryption not required for test instance
+  # checkov:skip=CKV_OCI_5: Legacy Metadata endpoint is disabled explicitly
   availability_domain = var.oci_compute.ad
   compartment_id      = var.compartment_id
   shape               = var.oci_compute.shape.name

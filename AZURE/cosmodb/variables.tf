@@ -5,16 +5,16 @@
 variable "azure_cosmodb" {
   description = "Container Variables"
   type = object({
-    cap1      = string
-    cap2      = string
-    cap3      = string
-    cap4      = string
-    cons      = string
-    failover  = number
-    kind      = string
-    location  = string
-    name      = string
-    type      = string
+    cap1     = string
+    cap2     = string
+    cap3     = string
+    cap4     = string
+    cons     = string
+    failover = number
+    kind     = string
+    location = string
+    name     = string
+    type     = string
   })
 }
 

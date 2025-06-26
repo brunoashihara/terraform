@@ -5,11 +5,9 @@
 variable "gcp_storage" {
   description = "Storage Variables"
   type = object({
-    class     = string
-    entity    = string
-    location  = string
-    name      = string
-    role      = string
+    class    = string
+    location = string
+    name     = string
   })
 }
 

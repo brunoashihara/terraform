@@ -5,8 +5,8 @@
 variable "azure_blob" {
   description = "Blob Variables"
   type = object({
-    name  = string
-    type  = string
+    name = string
+    type = string
   })
 }
 
@@ -26,6 +26,7 @@ variable "azure_container" {
     ip        = string
     name      = string
     os        = string
+    identity  = string
   })
 }
 
@@ -36,16 +37,16 @@ variable "azure_container" {
 variable "azure_cosmodb" {
   description = "Container Variables"
   type = object({
-    cap1      = string
-    cap2      = string
-    cap3      = string
-    cap4      = string
-    cons      = string
-    failover  = number
-    kind      = string
-    location  = string
-    name      = string
-    type      = string
+    cap1     = string
+    cap2     = string
+    cap3     = string
+    cap4     = string
+    cons     = string
+    failover = number
+    kind     = string
+    location = string
+    name     = string
+    type     = string
   })
 }
 
@@ -68,7 +69,7 @@ variable "azure_dbs_fw" {
 variable "azure_dns_zone" {
   description = "DNS Zone Variables"
   type = object({
-    name  = string
+    name = string
   })
 }
 
@@ -79,10 +80,10 @@ variable "azure_dns_zone" {
 variable "azure_fileshare" {
   description = "Fileshare Variables"
   type = object({
-    name      = string
-    quota     = number
-    sub_name  = string
-    tag       = string
+    name     = string
+    quota    = number
+    sub_name = string
+    tag      = string
   })
 }
 
@@ -94,11 +95,11 @@ variable "azure_fileshare" {
 variable "azure_key" {
   description = "Key Variables"
   type = object({
-    algo      = string
-    bits      = string
-    private   = string
-    perm      = string
-    ssh       = string
+    algo    = string
+    bits    = string
+    private = string
+    perm    = string
+    ssh     = string
   })
 }
 
@@ -109,8 +110,8 @@ variable "azure_key" {
 variable "azure_lng" {
   description = "Local Network Gateway Variables"
   type = object({
-    gw    = string
-    name  = string
+    gw   = string
+    name = string
   })
 }
 
@@ -129,25 +130,11 @@ variable "azure_mssql" {
     fw_name   = string
     name      = string
     version   = string
-  })
-}
-
-############################################
-# MYSQL
-############################################
-
-variable "azure_mysql" {
-  description = "MySQL Variables"
-  type = object({
-    db_char   = string
-    db_col    = string
-    db_name   = string
-    fw_name   = string
-    name      = string
-    sku       = string
-    stg       = number
     tls       = string
-    version   = string
+    retention = number
+    sub_name  = string
+    email     = list(string)
+    upn       = string
   })
 }
 
@@ -173,10 +160,10 @@ variable "azure_network" {
 variable "azure_ni" {
   description = "Network Interface Variables"
   type = object({
-    alloc     = string
-    linux     = string
-    name      = string
-    windows   = string
+    alloc   = string
+    linux   = string
+    name    = string
+    windows = string
   })
 }
 
@@ -187,7 +174,7 @@ variable "azure_ni" {
 variable "azure_nsg_private" {
   description = "Network Security Group Private Variables"
   type = object({
-    name  = string
+    name = string
     rules = map(object({
       name                       = string
       priority                   = number
@@ -209,7 +196,7 @@ variable "azure_nsg_private" {
 variable "azure_nsg_public" {
   description = "Network Security Group Public Variables"
   type = object({
-    name  = string
+    name = string
     rules = map(object({
       name                       = string
       priority                   = number
@@ -225,36 +212,17 @@ variable "azure_nsg_public" {
 }
 
 ############################################
-# POSTGRES
-############################################
-
-variable "azure_postgres" {
-  description = "Postgres Variables"
-  type = object({
-    db_char   = string
-    db_col    = string
-    db_name   = string
-    fw_name   = string
-    name      = string
-    sku       = string
-    ssl       = string
-    stg       = number
-    version   = string
-  })
-}
-
-############################################
 # RESOURCE GROUP
 ############################################
 
 variable "azure_resource_group" {
   description = "Resource group Variables"
   type = object({
-    admin   = string
-    name    = string
-    onprem  = string
-    pass    = string
-    region  = string
+    admin  = string
+    name   = string
+    onprem = string
+    pass   = string
+    region = string
   })
 }
 
@@ -265,9 +233,10 @@ variable "azure_resource_group" {
 variable "azure_storage" {
   description = "Storage Account Variables"
   type = object({
-    name    = string
-    replic  = string
-    tier    = string
+    name   = string
+    replic = string
+    tier   = string
+    tls    = string
   })
 }
 
@@ -278,8 +247,8 @@ variable "azure_storage" {
 variable "azure_sb_private" {
   description = "Subnet Private Variables"
   type = object({
-    ip    = string
-    name  = string
+    ip   = string
+    name = string
   })
 }
 
@@ -290,8 +259,8 @@ variable "azure_sb_private" {
 variable "azure_sb_public" {
   description = "Subnet Public Variables"
   type = object({
-    ip    = string
-    name  = string
+    ip   = string
+    name = string
   })
 }
 
@@ -302,8 +271,8 @@ variable "azure_sb_public" {
 variable "azure_sb_vpn" {
   description = "Subnet VPN Variables"
   type = object({
-    ip    = string
-    name  = string
+    ip   = string
+    name = string
   })
 }
 
@@ -357,8 +326,8 @@ variable "azure_vm_windows" {
 variable "azure_vn" {
   description = "Virtual Network Variables"
   type = object({
-    ip    = string
-    name  = string
+    ip   = string
+    name = string
   })
 }
 
@@ -369,12 +338,12 @@ variable "azure_vn" {
 variable "azure_vng" {
   description = "Virtual Network Gateway Variables"
   type = object({
-    alloc     = string
-    ip        = string
-    sku       = string
-    name      = string
-    type      = string
-    vtype     = string
+    alloc = string
+    ip    = string
+    sku   = string
+    name  = string
+    type  = string
+    vtype = string
   })
 }
 

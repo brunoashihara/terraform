@@ -4,12 +4,12 @@
 
 variable "gcp_firestore" {
   description = "Firestore Variables"
-  type = object ({
-    concur    = string
-    engine    = string
-    location  = string
-    name      = string
-    type      = string
+  type = object({
+    concur   = string
+    engine   = string
+    location = string
+    name     = string
+    type     = string
   })
 }
 

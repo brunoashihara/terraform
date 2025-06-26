@@ -4,8 +4,8 @@
 
 variable "aws_nacl_private" {
   description = "Network Access Control List Private Variables"
-  type  = object({
-    name  = string
+  type = object({
+    name = string
     rules = list(object({
       rule_no    = number
       action     = string
@@ -24,8 +24,8 @@ variable "aws_nacl_private" {
 
 variable "aws_nacl_public" {
   description = "Network Access Control List Public Variables"
-  type  = object({
-    name  = string
+  type = object({
+    name = string
     rules = list(object({
       rule_no    = number
       action     = string

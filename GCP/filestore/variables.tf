@@ -4,12 +4,13 @@
 
 variable "gcp_filestore" {
   description = "Filestore Variables"
-  type = object ({
-    cap       = number
-    name      = string
-    network   = string
-    share     = string
-    tier      = string
+  type = object({
+    cap      = number
+    name     = string
+    network  = string
+    share    = string
+    tier     = string
+    ip_range = string
   })
 }
 

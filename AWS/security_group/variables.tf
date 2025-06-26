@@ -5,7 +5,8 @@
 variable "aws_sg_private" {
   description = "Security Group Private Variables"
   type = object({
-    name    = string
+    name = string
+    desc = string
     ingress = list(object({
       from_port   = number
       to_port     = number
@@ -21,6 +22,7 @@ variable "aws_sg_private" {
   })
 }
 
+
 ############################################
 # SECURITY GROUP PUBLIC
 ############################################
@@ -28,7 +30,8 @@ variable "aws_sg_private" {
 variable "aws_sg_public" {
   description = "Security Group Public Variables"
   type = object({
-    name    = string
+    name = string
+    desc = string
     ingress = list(object({
       from_port   = number
       to_port     = number

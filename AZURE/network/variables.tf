@@ -20,8 +20,8 @@ variable "azure_network" {
 variable "azure_sb_private" {
   description = "Subnet Private Variables"
   type = object({
-    ip    = string
-    name  = string
+    ip   = string
+    name = string
   })
 }
 
@@ -32,8 +32,8 @@ variable "azure_sb_private" {
 variable "azure_sb_public" {
   description = "Subnet Public Variables"
   type = object({
-    ip    = string
-    name  = string
+    ip   = string
+    name = string
   })
 }
 
@@ -44,8 +44,8 @@ variable "azure_sb_public" {
 variable "azure_vn" {
   description = "Virtual Network Variables"
   type = object({
-    ip    = string
-    name  = string
+    ip   = string
+    name = string
   })
 }
 

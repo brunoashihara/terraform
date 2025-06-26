@@ -5,10 +5,10 @@
 variable "azure_fileshare" {
   description = "Fileshare Variables"
   type = object({
-    name      = string
-    quota     = number
-    sub_name  = string
-    tag       = string
+    name     = string
+    quota    = number
+    sub_name = string
+    tag      = string
   })
 }
 

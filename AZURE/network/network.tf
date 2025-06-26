@@ -14,6 +14,7 @@ resource "azurerm_virtual_network" "tf_vn" {
 ############################################
 
 resource "azurerm_subnet" "tf_sb_public" {
+  #checkov:skip=CKV2_AZURE_31 There is a NSG module that associate with this subnet
   name                 = var.azure_sb_public.name
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.tf_vn.name
@@ -25,10 +26,21 @@ resource "azurerm_subnet" "tf_sb_public" {
 ############################################
 
 resource "azurerm_subnet" "tf_sb_private" {
+  #checkov:skip=CKV2_AZURE_31 There is a NSG module that associate with this subnet
   name                 = var.azure_sb_private.name
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.tf_vn.name
   address_prefixes     = [var.azure_sb_private.ip]
+
+  delegation {
+    name = "delegation"
+    service_delegation {
+      name = "Microsoft.ContainerInstance/containerGroups"
+      actions = [
+        "Microsoft.Network/virtualNetworks/subnets/action",
+      ]
+    }
+  }
 }
 
 ############################################

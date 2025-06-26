@@ -14,6 +14,7 @@ variable "azure_container" {
     ip        = string
     name      = string
     os        = string
+    identity  = string
   })
 }
 
@@ -28,5 +29,10 @@ variable "resource_group_location" {
 
 variable "resource_group_name" {
   description = "Resource Group Name"
+  type        = string
+}
+
+variable "sb_private_id" {
+  description = "Subnet Private ID"
   type        = string
 }

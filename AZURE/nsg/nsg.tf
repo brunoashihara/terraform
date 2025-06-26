@@ -22,7 +22,7 @@ resource "azurerm_network_security_group" "tf_sg_public" {
 # NETWORK SECURITY GROUPS PRIVATE RULES
 ###########################################
 
-resource "azurerm_network_security_rule" "tf_sg_private_rule" {
+resource "azurerm_network_security_rule" "tf_sg_private_rules" {
   for_each                    = var.azure_nsg_private.rules
   name                        = each.value.name
   priority                    = each.value.priority

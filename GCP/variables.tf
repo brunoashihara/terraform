@@ -10,6 +10,7 @@ variable "gcp_compute" {
     li_name = string
     li_type = string
     size    = number
+    tags    = list(string)
     type    = string
     wi_img  = string
     wi_ip   = string
@@ -24,12 +25,13 @@ variable "gcp_compute" {
 
 variable "gcp_filestore" {
   description = "Filestore Variables"
-  type = object ({
-    cap       = number
-    name      = string
-    network   = string
-    share     = string
-    tier      = string
+  type = object({
+    cap      = number
+    name     = string
+    network  = string
+    share    = string
+    tier     = string
+    ip_range = string
   })
 }
 
@@ -39,12 +41,12 @@ variable "gcp_filestore" {
 
 variable "gcp_firestore" {
   description = "Firestore Variables"
-  type = object ({
-    concur    = string
-    engine    = string
-    location  = string
-    name      = string
-    type      = string
+  type = object({
+    concur   = string
+    engine   = string
+    location = string
+    name     = string
+    type     = string
   })
 }
 
@@ -63,7 +65,7 @@ variable "gcp_fw_private" {
 }
 
 ############################################
-# FIREWALL PUBLIC
+# FW PUBLIC
 ############################################
 
 variable "gcp_fw_public" {
@@ -73,6 +75,7 @@ variable "gcp_fw_public" {
     protocol      = string
     ports         = list(string)
     source_ranges = list(string)
+    target_tags   = optional(list(string), [])
   }))
 }
 
@@ -86,9 +89,17 @@ variable "gcp_gke" {
     count     = number
     name      = string
     oauth     = string
+    labels    = map(string)
     tags      = list(string)
     to_create = string
     to_update = string
+    enable    = bool
+    disable   = bool
+    cidr      = string
+    auth_name = string
+    metadata  = string
+    provider  = string
+    binary    = string
   })
 }
 
@@ -111,14 +122,18 @@ variable "gcp_key" {
 ############################################
 
 variable "gcp_postgres" {
-  description = "Postgres Variables"
   type = object({
-    auth      = string
-    name      = string
-    pass      = string
-    tier      = string
-    user      = string
-    version   = string
+    name    = string
+    version = string
+    tier    = string
+    enable  = bool
+    disable = bool
+    time    = string
+    backup  = number
+    unit    = string
+    auth    = string
+    pass    = string
+    user    = string
   })
 }
 
@@ -129,10 +144,9 @@ variable "gcp_postgres" {
 variable "gcp_project" {
   description = "Project Variables"
   type = object({
-    coringa = string
-    name    = string
-    region  = string
-    zone    = string
+    name   = string
+    region = string
+    zone   = string
   })
 }
 
@@ -143,7 +157,7 @@ variable "gcp_project" {
 variable "gcp_sql" {
   description = "SQL Variables"
   type = object({
-    name      = string
+    name = string
   })
 }
 
@@ -154,11 +168,9 @@ variable "gcp_sql" {
 variable "gcp_storage" {
   description = "Storage Variables"
   type = object({
-    class     = string
-    entity    = string
-    location  = string
-    name      = string
-    role      = string
+    class    = string
+    location = string
+    name     = string
   })
 }
 
@@ -209,6 +221,8 @@ variable "gcp_vpn" {
     key       = string
     onprem    = string
     onprem_sb = string
+    local     = string
+    remote    = string
     rt_name   = string
     rt_prio   = number
     tunnel    = string

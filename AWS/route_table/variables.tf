@@ -4,8 +4,8 @@
 
 variable "aws_rt_private" {
   description = "Route Table Private Variables"
-  type  = object({
-    name    = string
+  type = object({
+    name = string
   })
 }
 
@@ -15,7 +15,7 @@ variable "aws_rt_private" {
 
 variable "aws_rt_public" {
   description = "Route Table Public Variables"
-  type  = object({
+  type = object({
     name    = string
     coringa = string
   })

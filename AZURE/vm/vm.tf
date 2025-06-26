@@ -35,6 +35,7 @@ resource "azurerm_network_interface" "tf_ni_windows" {
 ############################################
 
 resource "azurerm_linux_virtual_machine" "azure01" {
+  #checkov:skip=CKV_AZURE_50: remote-exec is required to configure SMB mount
   name                  = var.azure_vm_linux.name
   resource_group_name   = var.resource_group_name
   location              = var.resource_group_location
@@ -83,13 +84,15 @@ resource "azurerm_linux_virtual_machine" "azure01" {
 ############################################
 
 resource "azurerm_windows_virtual_machine" "azure02" {
-  name                  = var.azure_vm_windows.name
-  resource_group_name   = var.resource_group_name
-  location              = var.resource_group_location
-  size                  = var.azure_vm_windows.tier
-  admin_username        = var.azure_resource_group.admin
-  admin_password        = var.azure_resource_group.pass
-  network_interface_ids = [azurerm_network_interface.tf_ni_windows.id]
+  #checkov:skip=CKV_AZURE_50: remote-exec is required to configure SMB mount
+  name                       = var.azure_vm_windows.name
+  resource_group_name        = var.resource_group_name
+  location                   = var.resource_group_location
+  size                       = var.azure_vm_windows.tier
+  admin_username             = var.azure_resource_group.admin
+  admin_password             = var.azure_resource_group.pass
+  network_interface_ids      = [azurerm_network_interface.tf_ni_windows.id]
+  encryption_at_host_enabled = true
   os_disk {
     name                 = var.azure_vm_windows.disk
     caching              = var.azure_vm_windows.cache

@@ -8,8 +8,9 @@ gcp_compute = {
   li_name = "gcp01"
   li_type = "e2-micro"
   size    = 30
+  tags    = ["public"]
   type    = "pd-standard"
-  wi_img  = "windows-cloud/windows-server-2022-dc-v20230712" 
+  wi_img  = "windows-cloud/windows-server-2022-dc-v20230712"
   wi_ip   = "tf-windows-ip"
   wi_name = "gcp02"
   wi_type = "e2-micro"
@@ -20,11 +21,12 @@ gcp_compute = {
 ############################################
 
 gcp_filestore = {
-  cap       = 1024
-  name      = "tf-filestore"
-  network   = "MODE_IPV4"
-  share     = "filestore"
-  tier      = "BASIC_HDD"
+  cap      = 1024
+  name     = "tf-filestore"
+  network  = "MODE_IPV4"
+  share    = "filestore"
+  tier     = "BASIC_HDD"
+  ip_range = "10.200.82.0/29"
 }
 
 ############################################
@@ -32,11 +34,11 @@ gcp_filestore = {
 ############################################
 
 gcp_firestore = {
-  concur    = "OPTIMISTIC"
-  engine    = "DISABLED"
-  location  = "nam5"
-  name      = "(default)"
-  type      = "FIRESTORE_NATIVE"
+  concur   = "OPTIMISTIC"
+  engine   = "DISABLED"
+  location = "nam5"
+  name     = "(default)"
+  type     = "FIRESTORE_NATIVE"
 }
 
 ############################################
@@ -63,30 +65,35 @@ gcp_fw_public = [
     protocol      = "icmp"
     ports         = []
     source_ranges = ["0.0.0.0/0"]
+    target_tags   = ["public"]
   },
   {
     name          = "allow-http"
     protocol      = "tcp"
     ports         = ["80"]
     source_ranges = ["0.0.0.0/0"]
+    target_tags   = ["public"]
   },
   {
     name          = "allow-https"
     protocol      = "tcp"
     ports         = ["443"]
     source_ranges = ["0.0.0.0/0"]
+    target_tags   = ["public"]
   },
   {
     name          = "allow-ssh"
     protocol      = "tcp"
     ports         = ["22"]
     source_ranges = ["0.0.0.0/0"]
+    target_tags   = ["public"]
   },
   {
     name          = "allow-rdp"
     protocol      = "tcp"
     ports         = ["3389"]
     source_ranges = ["0.0.0.0/0"]
+    target_tags   = ["public"]
   }
 ]
 
@@ -98,9 +105,17 @@ gcp_gke = {
   count     = 1
   name      = "tf-gke"
   oauth     = "https://www.googleapis.com/auth/cloud-platform"
+  labels    = { environment = "training" }
   tags      = ["environment", "training"]
   to_create = "30m"
   to_update = "40m"
+  enable    = true
+  disable   = false
+  cidr      = "172.16.0.0/28"
+  auth_name = "internal-access"
+  metadata  = "GKE_METADATA"
+  provider  = "CALICO"
+  binary    = "PROJECT_SINGLETON_POLICY_ENFORCE"
 }
 
 ############################################
@@ -119,12 +134,17 @@ gcp_key = {
 ############################################
 
 gcp_postgres = {
-  auth      = "tf-an"
-  name      = "tf-db-instance"
-  pass      = "trocarsenha"
-  tier      = "db-f1-micro"
-  user      = "tf-user"
-  version   = "POSTGRES_14"
+  name    = "tf-db-instance"
+  version = "POSTGRES_17"
+  tier    = "db-f1-micro"
+  enable  = true
+  disable = false
+  time    = "02:00"
+  backup  = 7
+  unit    = "COUNT"
+  auth    = "tf-an"
+  pass    = "trocarsenha"
+  user    = "tf-user"
 }
 
 ############################################
@@ -132,10 +152,9 @@ gcp_postgres = {
 ############################################
 
 gcp_project = {
-  coringa = "0.0.0.0/0"
-  name    = "gcp-tf-gce-gcs-labs"
-  region  = "us-central1"
-  zone    = "us-central1-c"
+  name   = "gcp-tf-gce-gcs-labs"
+  region = "us-central1"
+  zone   = "us-central1-c"
 }
 
 ############################################
@@ -143,7 +162,7 @@ gcp_project = {
 ############################################
 
 gcp_sql = {
-  name      = "tf-db"
+  name = "tf-db"
 }
 
 ############################################
@@ -151,11 +170,11 @@ gcp_sql = {
 ############################################
 
 gcp_storage = {
-  class     = "STANDARD"
-  entity    = "allUsers"
-  location  = "US"
-  name      = "tf-storage-clouding-storage"
-  role      = "roles/storage.objectViewer"
+  class    = "STANDARD"
+  entity   = "allUsers"
+  location = "US"
+  name     = "tf-storage-clouding-storage"
+  role     = "roles/storage.objectViewer"
 }
 
 ############################################
@@ -192,8 +211,10 @@ gcp_vpn = {
   gw        = "tf-vpn-gw"
   ip        = "tf-vpn-ip"
   key       = "trocarsenha"
-  onprem    = "0.0.0.0"
-  onprem_sb = "0.0.0.0/0"
+  onprem    = "0.0.0.0/0"
+  onprem_sb = "10.25.1.0/24"
+  local     = "10.200.80.0/22"
+  remote    = "10.25.1.0/24"
   rt_name   = "tf-vpn-rt"
   rt_prio   = 1000
   tunnel    = "tf-tunnel"
@@ -204,12 +225,12 @@ gcp_vpn = {
 ############################################
 
 gcp_vpn_fr = {
-  4500_name = "tf-fr-4500"
-  4500_port = "4500"
-  4500_prot = "UDP"
-  500_name  = "tf-fr-500"
-  500_port  = "500"
-  500_prot  = "UDP"
+  name_4500 = "tf-fr-4500"
+  port_4500 = "4500"
+  prot_4500 = "UDP"
+  name_500  = "tf-fr-500"
+  port_500  = "500"
+  prot_500  = "UDP"
   esp_name  = "tf-fr-esp"
   esp_prot  = "ESP"
 }

@@ -11,7 +11,7 @@ variable "oci_autonomousdb" {
     name      = string
     pass      = string
     retention = number
-    version   = string 
+    version   = string
   })
 }
 

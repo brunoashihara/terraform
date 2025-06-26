@@ -8,24 +8,27 @@ variable "gcp_gke" {
     count     = number
     name      = string
     oauth     = string
+    labels    = map(string)
     tags      = list(string)
     to_create = string
     to_update = string
+    enable    = bool
+    disable   = bool
+    cidr      = string
+    auth_name = string
+    metadata  = string
+    provider  = string
+    binary    = string
   })
 }
 
 ############################################
-# PROJECT
+# OTHERS VARIABLES
 ############################################
 
-variable "gcp_project" {
-  description = "Project Variables"
-  type = object({
-    coringa = string
-    name    = string
-    region  = string
-    zone    = string
-  })
+variable "region" {
+  description = "Region variable"
+  type        = string
 }
 
 ############################################
@@ -44,5 +47,10 @@ variable "sb_public_id" {
 
 variable "vpc_id" {
   description = "VPC ID"
+  type        = string
+}
+
+variable "authorized_cidr" {
+  description = "Subnet Private CIDR"
   type        = string
 }

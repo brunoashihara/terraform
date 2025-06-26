@@ -3,8 +3,8 @@
 ############################################
 
 azure_blob = {
-  name      = "tf-blob"
-  type      = "blob"
+  name = "tf-blob"
+  type = "private"
 }
 
 ############################################
@@ -18,9 +18,10 @@ azure_container = {
   ctn_name  = "tf-ctn"
   ctn_port  = 80
   ctn_proto = "TCP"
-  ip        = "public"
+  ip        = "Private"
   name      = "tf-container"
   os        = "Linux"
+  identity  = "SystemAssigned"
 }
 
 ############################################
@@ -28,16 +29,16 @@ azure_container = {
 ############################################
 
 azure_cosmodb = {
-  cap1      = "EnableMongo"
-  cap2      = "EnableAggregationPipeline"
-  cap3      = "mongoEnableDocLevelTTL"
-  cap4      = "MongoDBv3.4"
-  cons      = "Strong"
-  failover  = 0
-  kind      = "MongoDB"
-  location  = "eastus"
-  name      = "tf-cosmodb"
-  type      = "Standard"
+  cap1     = "EnableMongo"
+  cap2     = "EnableAggregationPipeline"
+  cap3     = "mongoEnableDocLevelTTL"
+  cap4     = "MongoDBv3.4"
+  cons     = "Strong"
+  failover = 0
+  kind     = "MongoDB"
+  location = "eastus"
+  name     = "tf-cosmodb"
+  type     = "Standard"
 }
 
 ############################################
@@ -45,8 +46,8 @@ azure_cosmodb = {
 ############################################
 
 azure_dbs_fw = {
-  fin    = "255.255.255.255"
-  ini    = "0.0.0.0/0"
+  fin = "0.0.0.0"
+  ini = "0.0.0.0"
 }
 
 ############################################
@@ -62,38 +63,11 @@ azure_mssql = {
   fw_name   = "tf-mssql-fw"
   name      = "tf-mssql"
   version   = "12.0"
-}
-
-############################################
-# MYSQL
-############################################
-
-azure_mysql = {
-  db_char   = "utf8"
-  db_col    = "utf8_unicode_ci"
-  db_name   = "tf-mysql-db"
-  fw_name   = "tf-mysql-fw"
-  name      = "tf-mysql"
-  sku       = "GP_Gen5_2"
-  stg       = 5120
-  tls       = "TLS1_2"
-  version   = "5.7"
-}
-
-############################################
-# POSTGRES
-############################################
-
-azure_postgres = {
-  db_char   = "UTF8"
-  db_col    = "English_United States.1252"
-  db_name   = "tfpostgresdb"
-  fw_name   = "tf-postgres-fw"
-  name      = "tf-postgres"
-  sku       = "B_Gen5_2"
-  ssl       = "true"
-  stg       = 5120
-  version   = "9.5"
+  tls       = "1.2"
+  retention = 90
+  sub_name  = "sqlServer"
+  email     = ["bhka.cloud@gmail.com"]
+  upn       = "bhka.cloud_gmail.com#EXT#@bhkacloudgmail.onmicrosoft.com"
 }
 
 ############################################
@@ -101,7 +75,7 @@ azure_postgres = {
 ############################################
 
 azure_dns_zone = {
-  name  = "privatelink.file.core.windows.net"
+  name = "privatelink.file.core.windows.net"
 }
 
 ############################################
@@ -109,10 +83,10 @@ azure_dns_zone = {
 ############################################
 
 azure_fileshare = {
-  name      = "fileshare"
-  quota     = 50
-  sub_name  = "file"
-  tag       = "dev"
+  name     = "fileshare"
+  quota    = 50
+  sub_name = "file"
+  tag      = "dev"
 }
 
 ############################################
@@ -120,11 +94,11 @@ azure_fileshare = {
 ############################################
 
 azure_key = {
-  algo      = "RSA"
-  bits      = "4096"
-  private   = "azure.pem"
-  perm      = "0600"
-  ssh       = "tf-azure-key"
+  algo    = "RSA"
+  bits    = "4096"
+  private = "azure.pem"
+  perm    = "0600"
+  ssh     = "tf-azure-key"
 }
 
 ############################################
@@ -132,8 +106,8 @@ azure_key = {
 ############################################
 
 azure_lng = {
-  gw        = "0.0.0.0"
-  name      = "tf-lng"
+  gw   = "0.0.0.0"
+  name = "tf-lng"
 }
 
 ############################################
@@ -153,10 +127,10 @@ azure_network = {
 ############################################
 
 azure_ni = {
-  alloc     = "Dynamic"
-  linux     = "tf-ni-linux"
-  name      = "internal"
-  windows   = "tf-ni-windows"
+  alloc   = "Dynamic"
+  linux   = "tf-ni-linux"
+  name    = "internal"
+  windows = "tf-ni-windows"
 }
 
 ############################################
@@ -164,16 +138,20 @@ azure_ni = {
 ############################################
 
 azure_nsg_private = {
-  name      = "tf-sg-private"
-  rule_name = "Allow-From-VNet"
-  priority  = 100
-  direction = "Inbound"
-  access    = "Allow"
-  protocol  = "*"
-  source_address_prefix = "VirtualNetwork"
-  destination_address_prefix = "*"
-  source_port_range = "*"
-  destination_port_range = "*"
+  name = "tf-sg-private"
+  rules = {
+    all = {
+      name                       = "Allow-From-VNet"
+      priority                   = 100
+      direction                  = "Inbound"
+      access                     = "Allow"
+      protocol                   = "*"
+      source_port_range          = "*"
+      destination_port_range     = "*"
+      source_address_prefix      = "VirtualNetwork"
+      destination_address_prefix = "*"
+    }
+  }
 }
 
 ############################################
@@ -181,7 +159,7 @@ azure_nsg_private = {
 ############################################
 
 azure_nsg_public = {
-  name  = "tf-sg-public"
+  name = "tf-sg-public"
   rules = {
     ssh = {
       name                       = "Allow-SSH"
@@ -191,7 +169,7 @@ azure_nsg_public = {
       protocol                   = "Tcp"
       source_port_range          = "*"
       destination_port_range     = "22"
-      source_address_prefix      = "*"
+      source_address_prefix      = "0.0.0.0/0"
       destination_address_prefix = "*"
     }
 
@@ -203,7 +181,7 @@ azure_nsg_public = {
       protocol                   = "Tcp"
       source_port_range          = "*"
       destination_port_range     = "3389"
-      source_address_prefix      = "*"
+      source_address_prefix      = "0.0.0.0/0"
       destination_address_prefix = "*"
     }
 
@@ -215,7 +193,7 @@ azure_nsg_public = {
       protocol                   = "Tcp"
       source_port_range          = "*"
       destination_port_range     = "80"
-      source_address_prefix      = "*"
+      source_address_prefix      = "0.0.0.0/0"
       destination_address_prefix = "*"
     }
 
@@ -227,7 +205,7 @@ azure_nsg_public = {
       protocol                   = "Tcp"
       source_port_range          = "*"
       destination_port_range     = "443"
-      source_address_prefix      = "*"
+      source_address_prefix      = "0.0.0.0/0"
       destination_address_prefix = "*"
     }
 
@@ -239,7 +217,7 @@ azure_nsg_public = {
       protocol                   = "Icmp"
       source_port_range          = "*"
       destination_port_range     = "*"
-      source_address_prefix      = "*"
+      source_address_prefix      = "0.0.0.0/0"
       destination_address_prefix = "*"
     }
   }
@@ -250,11 +228,11 @@ azure_nsg_public = {
 ############################################
 
 azure_resource_group = {
-  admin     = "adminuser"
-  name      = "tf-rg"
-  onprem    = "0.0.0.0/0"
-  pass      = "trocarsenha"
-  region    = "East US"
+  admin  = "adminuser"
+  name   = "tf-rg"
+  onprem = "0.0.0.0/0"
+  pass   = "trocarsenha"
+  region = "East US"
 }
 
 ############################################
@@ -262,9 +240,10 @@ azure_resource_group = {
 ############################################
 
 azure_storage = {
-  name      = "tf00sa"
-  tier      = "Standard"
-  replic    = "LRS"
+  name   = "tf00sa"
+  tier   = "Standard"
+  replic = "LRS"
+  tls    = "TLS1_2"
 }
 
 ############################################
@@ -272,8 +251,8 @@ azure_storage = {
 ############################################
 
 azure_sb_private = {
-  ip        = "10.150.40.0/24"
-  name      = "tf-sb-private"
+  ip   = "10.150.40.0/24"
+  name = "tf-sb-private"
 }
 
 ############################################
@@ -281,8 +260,8 @@ azure_sb_private = {
 ############################################
 
 azure_sb_public = {
-  ip        = "10.150.41.0/24"
-  name      = "tf-sb-public"
+  ip   = "10.150.41.0/24"
+  name = "tf-sb-public"
 }
 
 ############################################
@@ -290,8 +269,8 @@ azure_sb_public = {
 ############################################
 
 azure_sb_vpn = {
-  ip        = "10.150.42.0/24"
-  name      = "GatewaySubnet"
+  ip   = "10.150.42.0/24"
+  name = "GatewaySubnet"
 }
 
 ############################################
@@ -336,8 +315,8 @@ azure_vm_windows = {
 ############################################
 
 azure_vn = {
-  ip        = "10.150.40.0/22"
-  name      = "tf-vn"
+  ip   = "10.150.40.0/22"
+  name = "tf-vn"
 }
 
 ############################################
@@ -345,12 +324,12 @@ azure_vn = {
 ############################################
 
 azure_vng = {
-  alloc     = "Dynamic"
-  ip        = "tf-vng-ip"
-  sku       = "Standard"
-  name      = "tf-vng"
-  type      = "Vpn"
-  vtype     = "RouteBased"
+  alloc = "Dynamic"
+  ip    = "tf-vng-ip"
+  sku   = "Standard"
+  name  = "tf-vng"
+  type  = "Vpn"
+  vtype = "RouteBased"
 }
 
 ############################################

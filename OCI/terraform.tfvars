@@ -9,7 +9,7 @@ oci_autonomousdb = {
   name      = "autodbtf"
   pass      = "troqueasenha"
   retention = 1
-  version   = "19c" 
+  version   = "19c"
 }
 
 ############################################
@@ -17,10 +17,16 @@ oci_autonomousdb = {
 ############################################
 
 oci_bucket = {
-  name      = "tf-bucket"
-  namespace = "idnriwtvurim"
-  tier      = "Standard"
-  type      = "NoPublicAccess"
+  name             = "tf-bucket"
+  namespace        = "mynamespace"
+  type             = "NoPublicAccess"
+  tier             = "Standard"
+  version          = "Enabled"
+  lifecycle_name   = "delete-old-versions"
+  lifecycle_action = "DELETE"
+  lifecycle_target = "VERSIONS"
+  lifecycle_time   = 5
+  lifecycle_unit   = "DAYS"
 }
 
 ############################################
@@ -48,10 +54,10 @@ oci_compartment = {
 ############################################
 
 oci_compute = {
-  ad          = "jSSY:US-ASHBURN-AD-1"
-  img         = "ocid1.image.oc1.iad.aaaaaaaacnjdag7ngxnzim3ogkgfywf4aoclwz4gkcaqdr773hukt5o2ahma"
-  name        = "oci01"
-  public      = true
+  ad     = "jSSY:US-ASHBURN-AD-1"
+  img    = "ocid1.image.oc1.iad.aaaaaaaacnjdag7ngxnzim3ogkgfywf4aoclwz4gkcaqdr773hukt5o2ahma"
+  name   = "oci01"
+  public = true
   shape = {
     ocpus = 1
     mem   = 1
@@ -140,7 +146,7 @@ oci_mount = {
 ############################################
 
 oci_nsg_private = {
-  name           = "tf-nsg-private"
+  name = "tf-nsg-private"
   ingress_rules = [
     {
       protocol    = "all"
@@ -164,12 +170,12 @@ oci_nsg_private = {
 ############################################
 
 oci_nsg_public = {
-  name           = "tf-nsg-public"
+  name = "tf-nsg-public"
   ingress_rules = [
     {
       protocol    = "all"
       source_type = "CIDR_BLOCK"
-      source      = "0.0.0.0/0"
+      source      = "0.0.0.0/0/0"
       description = "Access SSH/HTTP/HTTPS"
     }
   ]
@@ -188,7 +194,7 @@ oci_nsg_public = {
 ############################################
 
 oci_rt_private = {
-  name  = "tf-rt-private"
+  name = "tf-rt-private"
 }
 
 ############################################
@@ -196,7 +202,7 @@ oci_rt_private = {
 ############################################
 
 oci_rt_public = {
-  name  = "tf-rt-public"
+  name = "tf-rt-public"
   rules = [
     {
       cidr        = "0.0.0.0/0"
@@ -228,10 +234,10 @@ oci_sb_private = {
 ############################################
 
 oci_sb_public = {
-  cidr    = "10.250.121.0/24"
-  name    = "tf-sb-public"
-  public  = true
-  label   = "public"
+  cidr   = "10.250.121.0/24"
+  name   = "tf-sb-public"
+  public = true
+  label  = "public"
 }
 
 ############################################

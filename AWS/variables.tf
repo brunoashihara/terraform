@@ -4,15 +4,26 @@
 
 variable "aws_dynamodb" {
   description = "Dynamodb Variables"
-  type  = object({
-    attr_type = string
-    billing   = string
-    hash      = string
-    name      = string
-    r_cap     = number
-    r_key     = string
-    ttl_name  = string
-    w_cap     = number
+  type = object({
+    name            = string
+    billing         = string
+    r_cap           = number
+    w_cap           = number
+    hash            = string
+    r_key           = string
+    attr_type       = string
+    ttl_name        = string
+    max_cap         = number
+    min_cap         = number
+    read_scale_dim  = string
+    write_scake_dim = string
+    read_metric     = string
+    write_metric    = string
+    service_ns      = string
+    policy          = string
+    target          = number
+    scale_in        = number
+    scale_out       = number
   })
 }
 
@@ -22,7 +33,7 @@ variable "aws_dynamodb" {
 
 variable "aws_ec2" {
   description = "EC2 Variables"
-  type  = object({
+  type = object({
     li_ami    = string
     li_conn_t = string
     li_conn_u = string
@@ -41,8 +52,8 @@ variable "aws_ec2" {
 
 variable "aws_efs" {
   description = "EFS Variables"
-  type  = object({
-    name     = string
+  type = object({
+    name = string
   })
 }
 
@@ -52,11 +63,11 @@ variable "aws_efs" {
 
 variable "aws_key" {
   description = "Key Variables"
-  type  = object({
-    algo      = string
-    perm      = string
-    private   = string
-    public    = string
+  type = object({
+    algo    = string
+    perm    = string
+    private = string
+    public  = string
   })
 }
 
@@ -66,8 +77,8 @@ variable "aws_key" {
 
 variable "aws_nacl_private" {
   description = "Network Access Control List Private Variables"
-  type  = object({
-    name  = string
+  type = object({
+    name = string
     rules = list(object({
       rule_no    = number
       action     = string
@@ -86,8 +97,8 @@ variable "aws_nacl_private" {
 
 variable "aws_nacl_public" {
   description = "Network Access Control List Public Variables"
-  type  = object({
-    name  = string
+  type = object({
+    name = string
     rules = list(object({
       rule_no    = number
       action     = string
@@ -106,7 +117,7 @@ variable "aws_nacl_public" {
 
 variable "aws_rds" {
   description = "RDS Variables"
-  type  = object({
+  type = object({
     class     = string
     engine    = string
     ident     = string
@@ -117,6 +128,8 @@ variable "aws_rds" {
     stg       = number
     user      = string
     version   = string
+    retention = number
+    insights  = bool
   })
 }
 
@@ -126,9 +139,9 @@ variable "aws_rds" {
 
 variable "aws_region" {
   description = "Region Variables"
-  type  = object({
-    name    = string
-    true    = string
+  type = object({
+    name = string
+    true = string
   })
 }
 
@@ -138,8 +151,8 @@ variable "aws_region" {
 
 variable "aws_rt_private" {
   description = "Route Table Private Variables"
-  type  = object({
-    name    = string
+  type = object({
+    name = string
   })
 }
 
@@ -149,7 +162,7 @@ variable "aws_rt_private" {
 
 variable "aws_rt_public" {
   description = "Route Table Public Variables"
-  type  = object({
+  type = object({
     coringa = string
     name    = string
   })
@@ -161,8 +174,8 @@ variable "aws_rt_public" {
 
 variable "aws_s3" {
   description = "S3 Variables"
-  type  = object({
-    name     = string
+  type = object({
+    name = string
   })
 }
 
@@ -173,7 +186,8 @@ variable "aws_s3" {
 variable "aws_sg_private" {
   description = "Security Group Private Variables"
   type = object({
-    name    = string
+    name = string
+    desc = string
     ingress = list(object({
       from_port   = number
       to_port     = number
@@ -197,7 +211,8 @@ variable "aws_sg_private" {
 variable "aws_sg_public" {
   description = "Security Group Public Variables"
   type = object({
-    name    = string
+    name = string
+    desc = string
     ingress = list(object({
       from_port   = number
       to_port     = number
@@ -219,9 +234,9 @@ variable "aws_sg_public" {
 
 variable "aws_sb_private" {
   description = "Subnet Private Variables"
-  type  = object({
-    cidr      = string
-    name      = string
+  type = object({
+    cidr = string
+    name = string
   })
 }
 
@@ -231,9 +246,9 @@ variable "aws_sb_private" {
 
 variable "aws_sb_public" {
   description = "Subnet Public Variables"
-  type  = object({
-    cidr      = string
-    name      = string
+  type = object({
+    cidr = string
+    name = string
   })
 }
 
@@ -243,9 +258,9 @@ variable "aws_sb_public" {
 
 variable "aws_vpc" {
   description = "VPC Variables"
-  type  = object({
-    cidr      = string
-    igw       = string
-    name      = string
+  type = object({
+    cidr = string
+    igw  = string
+    name = string
   })
 }

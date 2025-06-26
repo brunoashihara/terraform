@@ -3,6 +3,7 @@
 ############################################
 
 resource "oci_file_storage_file_system" "tf_file" {
+  #checkov:skip=CKV_OCI_15: This is more like a lab and doesnt need to use CMK
   availability_domain = var.oci_file.ad
   compartment_id      = var.compartment_id
   display_name        = var.oci_file.name

@@ -5,10 +5,16 @@
 variable "oci_bucket" {
   description = "Bucket variables"
   type = object({
-    name      = string
-    namespace = string
-    tier      = string
-    type      = string
+    name             = string
+    namespace        = string
+    type             = string
+    tier             = string
+    version          = string
+    lifecycle_name   = string
+    lifecycle_action = string
+    lifecycle_target = string
+    lifecycle_time   = number
+    lifecycle_unit   = string
   })
 }
 

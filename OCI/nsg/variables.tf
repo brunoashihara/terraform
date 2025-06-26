@@ -5,7 +5,7 @@
 variable "oci_nsg_private" {
   description = "NSG Private Variables"
   type = object({
-    name           = string
+    name = string
     ingress_rules = list(object({
       protocol    = string
       source_type = string
@@ -30,7 +30,7 @@ variable "oci_nsg_private" {
 variable "oci_nsg_public" {
   description = "NSG Public Variables"
   type = object({
-    name           = string
+    name = string
     ingress_rules = list(object({
       protocol    = string
       source_type = string

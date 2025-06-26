@@ -63,8 +63,8 @@ resource "google_compute_vpn_tunnel" "tf_tunnel" {
   project                 = var.project_id
   name                    = var.gcp_vpn.tunnel
   peer_ip                 = var.gcp_vpn.onprem
-  local_traffic_selector  = [var.gcp_project.coringa]
-  remote_traffic_selector = [var.gcp_project.coringa]
+  local_traffic_selector  = [var.gcp_vpn.local]
+  remote_traffic_selector = [var.gcp_vpn.remote]
   shared_secret           = var.gcp_vpn.key
   target_vpn_gateway      = google_compute_vpn_gateway.tf_vpn_gw.id
   depends_on = [

@@ -23,6 +23,7 @@ variable "gcp_fw_public" {
     protocol      = string
     ports         = list(string)
     source_ranges = list(string)
+    target_tags   = optional(list(string), [])
   }))
 }
 

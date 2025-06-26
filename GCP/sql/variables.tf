@@ -3,28 +3,18 @@
 ############################################
 
 variable "gcp_postgres" {
-  description = "Postgres Variables"
   type = object({
-    auth      = string
-    name      = string
-    pass      = string
-    tier      = string
-    user      = string
-    version   = string
-  })
-}
-
-############################################
-# PROJECT
-############################################
-
-variable "gcp_project" {
-  description = "Project Variables"
-  type = object({
-    coringa = string
     name    = string
-    region  = string
-    zone    = string
+    version = string
+    tier    = string
+    enable  = bool
+    disable = bool
+    time    = string
+    backup  = number
+    unit    = string
+    auth    = string
+    pass    = string
+    user    = string
   })
 }
 
@@ -35,8 +25,17 @@ variable "gcp_project" {
 variable "gcp_sql" {
   description = "SQL Variables"
   type = object({
-    name      = string
+    name = string
   })
+}
+
+############################################
+# OTHERS VARIABLES
+############################################
+
+variable "region" {
+  description = "Region variable"
+  type        = string
 }
 
 ############################################
@@ -45,5 +44,10 @@ variable "gcp_sql" {
 
 variable "project_id" {
   description = "Project ID"
+  type        = string
+}
+
+variable "vpc_link" {
+  description = "VPC Link"
   type        = string
 }

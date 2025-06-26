@@ -1,4 +1,4 @@
-name: OpenTofu Validation AZURE
+name: Terraform Validation AZURE
 
 on:
   push:
@@ -18,20 +18,20 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-    
-    - name: Setup OpenTofu
-      uses: opentofu/setup-opentofu@v1
+  
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
       with:
-        tofu_version: 1.6.0
+        terraform_version: 1.6.6
+  
+    - name: Terraform Init
+      run: terraform init
     
-    - name: OpenTofu Init
-      run: tofu init ## -backend=false
-    
-    - name: OpenTofu Format
-      run: tofu fmt -recursive
+    - name: Terraform Format
+      run: terraform fmt -recursive
       
-    - name: OpenTofu Format Check
-      run: tofu fmt -check -recursive
+    - name: Terraform Format Check
+      run: terraform fmt -check -recursive
 
-    - name: OpenTofu Validate
-      run: tofu validate
+    - name: Terraform Validate
+      run: terraform validate

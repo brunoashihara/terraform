@@ -4,16 +4,18 @@
 
 variable "aws_rds" {
   description = "RDS Variables"
-  type  = object({
-    name      = string
-    stg       = number
-    engine    = string
-    version   = string
+  type = object({
     class     = string
-    user      = string
+    engine    = string
+    ident     = string
+    name      = string
+    parameter = string
     pass      = string
     port      = string
-    parameter = string
-    ident     = string
+    stg       = number
+    user      = string
+    version   = string
+    retention = number
+    insights  = bool
   })
 }

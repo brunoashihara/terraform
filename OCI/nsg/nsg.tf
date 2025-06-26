@@ -39,7 +39,7 @@ resource "oci_core_network_security_group_security_rule" "nsg_private_ingress" {
 ############################################
 
 resource "oci_core_network_security_group_security_rule" "nsg_public_ingress" {
-  for_each = { for idx, rule in var.oci_nsg_public.ingress_rules : idx => rule }
+  for_each                  = { for idx, rule in var.oci_nsg_public.ingress_rules : idx => rule }
   network_security_group_id = oci_core_network_security_group.tf_nsg_public.id
   direction                 = "INGRESS"
   protocol                  = each.value.protocol
@@ -54,6 +54,7 @@ resource "oci_core_network_security_group_security_rule" "nsg_public_ingress" {
 ############################################
 
 resource "oci_core_network_security_group_security_rule" "nsg_private_egress" {
+  # checkov:skip=CKV2_OCI_2: Its normal to see this kind of rules for egress
   for_each = { for idx, rule in var.oci_nsg_private.egress_rules : idx => rule }
 
   network_security_group_id = oci_core_network_security_group.tf_nsg_private.id
@@ -70,6 +71,7 @@ resource "oci_core_network_security_group_security_rule" "nsg_private_egress" {
 ############################################
 
 resource "oci_core_network_security_group_security_rule" "nsg_public_egress" {
+  # checkov:skip=CKV2_OCI_2: Its normal to see this kind of rules for egress
   for_each = { for idx, rule in var.oci_nsg_public.egress_rules : idx => rule }
 
   network_security_group_id = oci_core_network_security_group.tf_nsg_public.id

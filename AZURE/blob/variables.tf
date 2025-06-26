@@ -5,8 +5,8 @@
 variable "azure_blob" {
   description = "Blob Variables"
   type = object({
-    name  = string
-    type  = string
+    name = string
+    type = string
   })
 }
 

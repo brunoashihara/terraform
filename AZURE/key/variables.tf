@@ -5,11 +5,11 @@
 variable "azure_key" {
   description = "Key Variables"
   type = object({
-    algo      = string
-    bits      = string
-    private   = string
-    perm      = string
-    ssh       = string
+    algo    = string
+    bits    = string
+    private = string
+    perm    = string
+    ssh     = string
   })
 }
 

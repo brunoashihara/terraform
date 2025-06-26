@@ -5,7 +5,7 @@
 variable "azure_nsg_private" {
   description = "Network Security Group Private Variables"
   type = object({
-    name  = string
+    name = string
     rules = map(object({
       name                       = string
       priority                   = number
@@ -27,7 +27,7 @@ variable "azure_nsg_private" {
 variable "azure_nsg_public" {
   description = "Network Security Group Public Variables"
   type = object({
-    name  = string
+    name = string
     rules = map(object({
       name                       = string
       priority                   = number

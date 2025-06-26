@@ -1,4 +1,4 @@
-name: OpenTofu Validation OCI
+name: Terraform Validation OCI
 
 on:
   push:
@@ -14,24 +14,24 @@ jobs:
     defaults:
       run:
         working-directory: OCI
-
+    
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
     
-    - name: Setup OpenTofu
-      uses: opentofu/setup-opentofu@v1
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
       with:
-        tofu_version: 1.6.0
-    
-    - name: OpenTofu Init
-      run: tofu init ## -backend=false
-    
-    - name: OpenTofu Format
-      run: tofu fmt -recursive
-      
-    - name: OpenTofu Format Check
-      run: tofu fmt -check -recursive
+        terraform_version: 1.6.6
 
-    - name: OpenTofu Validate
-      run: tofu validate
+    - name: Terraform Init
+      run: terraform init
+    
+    - name: Terraform Format
+      run: terraform fmt -recursive
+      
+    - name: Terraform Format Check
+      run: terraform fmt -check -recursive
+
+    - name: Terraform Validate
+      run: terraform validate

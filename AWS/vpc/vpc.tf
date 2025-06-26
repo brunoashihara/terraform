@@ -2,7 +2,10 @@
 # VPC
 ############################################
 
+#tfsec:ignore:aws-ec2-require-vpc-flow-logs-for-all-vpcs
 resource "aws_vpc" "tf_vpc" {
+  #checkov:skip=CKV2_AWS_11: Doesnt need flow logs
+  #checkov:skip=CKV2_AWS_12: Default SG is not used the custom SGs are attached in other modules
   cidr_block           = var.aws_vpc.cidr
   enable_dns_hostnames = true
   enable_dns_support   = true

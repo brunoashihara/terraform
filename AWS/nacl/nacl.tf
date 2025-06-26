@@ -3,6 +3,7 @@
 ############################################
 
 resource "aws_network_acl" "tf_nacl_private" {
+  # checkov:skip=CKV2_AWS_1: Association is managed in the same module via aws_network_acl_association
   vpc_id = var.vpc_id
   tags = {
     Name = var.aws_nacl_private.name
@@ -14,6 +15,7 @@ resource "aws_network_acl" "tf_nacl_private" {
 ############################################
 
 resource "aws_network_acl" "tf_nacl_public" {
+  # checkov:skip=CKV2_AWS_1: Association is managed in the same module via aws_network_acl_association
   vpc_id = var.vpc_id
   tags = {
     Name = var.aws_nacl_public.name
@@ -25,6 +27,7 @@ resource "aws_network_acl" "tf_nacl_public" {
 ############################################
 
 resource "aws_network_acl_rule" "tf_nacl_private_rules" {
+  #checkov:skip=CKV_AWS_352: Egress Deny all rule
   for_each = { for r in var.aws_nacl_private.rules : r.rule_no => r }
 
   network_acl_id = aws_network_acl.tf_nacl_private.id
@@ -42,6 +45,7 @@ resource "aws_network_acl_rule" "tf_nacl_private_rules" {
 ############################################
 
 resource "aws_network_acl_rule" "tf_nacl_public_rules" {
+  #checkov:skip=CKV_AWS_352: Egress Deny all rule
   for_each = { for r in var.aws_nacl_public.rules : r.rule_no => r }
 
   network_acl_id = aws_network_acl.tf_nacl_public.id

@@ -5,8 +5,8 @@
 variable "azure_lng" {
   description = "Local Network Gateway Variables"
   type = object({
-    gw    = string
-    name  = string
+    gw   = string
+    name = string
   })
 }
 
@@ -32,11 +32,11 @@ variable "azure_network" {
 variable "azure_resource_group" {
   description = "Resource group Variables"
   type = object({
-    admin   = string
-    name    = string
-    onprem  = string
-    pass    = string
-    region  = string
+    admin  = string
+    name   = string
+    onprem = string
+    pass   = string
+    region = string
   })
 }
 
@@ -47,20 +47,8 @@ variable "azure_resource_group" {
 variable "azure_sb_vpn" {
   description = "Subnet VPN Variables"
   type = object({
-    ip    = string
-    name  = string
-  })
-}
-
-############################################
-# VIRTUAL NETWORK
-############################################
-
-variable "azure_vn" {
-  description = "Virtual Network Variables"
-  type = object({
-    ip    = string
-    name  = string
+    ip   = string
+    name = string
   })
 }
 
@@ -71,12 +59,12 @@ variable "azure_vn" {
 variable "azure_vng" {
   description = "Virtual Network Gateway Variables"
   type = object({
-    alloc     = string
-    ip        = string
-    sku       = string
-    name      = string
-    type      = string
-    vtype     = string
+    alloc = string
+    ip    = string
+    sku   = string
+    name  = string
+    type  = string
+    vtype = string
   })
 }
 

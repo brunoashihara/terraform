@@ -5,11 +5,11 @@
 variable "oci_compute" {
   description = "Compute Variables"
   type = object({
-    ad          = string
-    img         = string
-    name        = string
-    public      = bool
-    shape= object({
+    ad     = string
+    img    = string
+    name   = string
+    public = bool
+    shape = object({
       ocpus = number
       mem   = number
       name  = string

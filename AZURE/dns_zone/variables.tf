@@ -5,7 +5,7 @@
 variable "azure_dns_zone" {
   description = "DNS Zone Variables"
   type = object({
-    name  = string
+    name = string
   })
 }
 

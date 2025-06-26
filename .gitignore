@@ -1,0 +1,27 @@
+# Terraform state files
+.teraform.lock.hcl
+*.tfstate*
+*.tfplan
+*.tfstate.backup
+
+#Terraform paste
+.terraform
+
+# Checks
+.infracost
+infracost*
+tflint*
+tfsec*
+checkov*
+
+# Ignore SSH keys
+id_rsa*
+
+# Ignore output shell
+output-gen*
+tfplan
+
+# File with credentials
+env.sh
+*original.tf
+*original.tfvars

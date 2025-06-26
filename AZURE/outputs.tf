@@ -26,14 +26,6 @@ output "mssql" {
   value = module.azure_database.mssql_dn
 }
 
-output "mysql" {
-  value = module.azure_database.mysql_dn
-}
-
-output "postgres" {
-  value = module.azure_database.postgres_dn
-}
-
 output "vpn" {
   value = module.azure_vpn.vpn_ip
 }

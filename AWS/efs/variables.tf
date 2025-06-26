@@ -4,8 +4,8 @@
 
 variable "aws_efs" {
   description = "EFS Variables"
-  type  = object({
-    name     = string
+  type = object({
+    name = string
   })
 }
 

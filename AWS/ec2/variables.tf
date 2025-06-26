@@ -4,7 +4,7 @@
 
 variable "aws_ec2" {
   description = "EC2 Variables"
-  type  = object({
+  type = object({
     li_sleep  = string
     li_name   = string
     li_ami    = string

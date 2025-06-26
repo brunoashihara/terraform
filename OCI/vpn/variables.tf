@@ -28,8 +28,8 @@ variable "oci_drg" {
 variable "oci_drg_attach" {
   description = "Dynamic Routing Gateway Attachment Variables"
   type = object({
-  name = string
-  type = string
+    name = string
+    type = string
   })
 }
 

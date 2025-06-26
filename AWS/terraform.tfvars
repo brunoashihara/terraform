@@ -3,14 +3,25 @@
 ############################################
 
 aws_dynamodb = {
-  attr_type = "S"
-  billing   = "PROVISIONED"
-  hash      = "UserId"
-  name      = "tf-dynamodb"
-  r_key     = "GameTitle"
-  r_cap     = 20
-  ttl_name  = "TimeToExist"
-  w_cap     = 20
+  attr_type       = "S"
+  billing         = "PROVISIONED"
+  hash            = "UserId"
+  name            = "tf-dynamodb"
+  r_key           = "GameTitle"
+  r_cap           = 20
+  ttl_name        = "TimeToExist"
+  w_cap           = 20
+  max_cap         = 100
+  min_cap         = 5
+  read_scale_dim  = "dynamodb:table:ReadCapacityUnits"
+  write_scake_dim = "dynamodb:table:WriteCapacityUnits"
+  read_metric     = "DynamoDBReadCapacityUtilization"
+  write_metric    = "DynamoDBWriteCapacityUtilization"
+  service_ns      = "dynamodb"
+  policy          = "TargetTrackingScaling"
+  target          = 70
+  scale_in        = 60
+  scale_out       = 60
 }
 
 ############################################
@@ -34,7 +45,7 @@ aws_ec2 = {
 ############################################
 
 aws_efs = {
-  name  = "tf-efs"
+  name = "tf-efs"
 }
 
 ############################################
@@ -42,10 +53,10 @@ aws_efs = {
 ############################################
 
 aws_key = {
-  algo      = "RSA"
-  perm      = "0600"
-  private   = "aws.pem"
-  public    = "tf-aws-key"
+  algo    = "RSA"
+  perm    = "0600"
+  private = "aws.pem"
+  public  = "tf-aws-key"
 }
 
 ############################################
@@ -58,37 +69,37 @@ aws_nacl_private = {
     {
       rule_no    = 1
       action     = "allow"
-      protocol   = "-1"
+      protocol   = "6"
       cidr_block = "10.100.20.0/22"
-      from_port  = 0
-      to_port    = 0
+      from_port  = 2049
+      to_port    = 2049
       egress     = false
     },
     {
-      rule_no    = 100
+      rule_no    = 400
       action     = "deny"
       protocol   = "-1"
       cidr_block = "0.0.0.0/0"
       from_port  = 0
-      to_port    = 0
+      to_port    = 65535
       egress     = false
     },
     {
       rule_no    = 101
       action     = "allow"
-      protocol   = "-1"
+      protocol   = "6"
       cidr_block = "10.100.20.0/22"
-      from_port  = 0
-      to_port    = 0
+      from_port  = 2049
+      to_port    = 2049
       egress     = true
     },
     {
-      rule_no    = 200
+      rule_no    = 401
       action     = "deny"
       protocol   = "-1"
       cidr_block = "0.0.0.0/0"
       from_port  = 0
-      to_port    = 0
+      to_port    = 65535
       egress     = true
     },
   ]
@@ -104,37 +115,82 @@ aws_nacl_public = {
     {
       rule_no    = 1
       action     = "allow"
-      protocol   = "-1"
+      protocol   = "6"
       cidr_block = "0.0.0.0/0"
-      from_port  = 0
-      to_port    = 0
+      from_port  = 22
+      to_port    = 22
       egress     = false
     },
     {
-      rule_no    = 100
-      action     = "deny"
-      protocol   = "-1"
+      rule_no    = 2
+      action     = "allow"
+      protocol   = "6"
       cidr_block = "0.0.0.0/0"
-      from_port  = 0
-      to_port    = 0
+      from_port  = 3389
+      to_port    = 3389
+      egress     = false
+    },
+    {
+      rule_no    = 3
+      action     = "allow"
+      protocol   = "6"
+      cidr_block = "0.0.0.0/0"
+      from_port  = 80
+      to_port    = 80
+      egress     = false
+    },
+    {
+      rule_no    = 4
+      action     = "allow"
+      protocol   = "6"
+      cidr_block = "0.0.0.0/0"
+      from_port  = 443
+      to_port    = 443
       egress     = false
     },
     {
       rule_no    = 101
       action     = "allow"
-      protocol   = "-1"
-      cidr_block = "0.0.0.0/0"
-      from_port  = 0
-      to_port    = 0
+      protocol   = "6"
+      cidr_block = "10.100.20.0/22"
+      from_port  = 2049
+      to_port    = 2049
       egress     = true
     },
     {
-      rule_no    = 200
+      rule_no    = 102
+      action     = "allow"
+      protocol   = "6"
+      cidr_block = "0.0.0.0/0"
+      from_port  = 1024
+      to_port    = 65535
+      egress     = true
+    },
+    {
+      rule_no    = 103
+      action     = "allow"
+      protocol   = "6"
+      cidr_block = "0.0.0.0/0"
+      from_port  = 443
+      to_port    = 443
+      egress     = true
+    },
+    {
+      rule_no    = 400
       action     = "deny"
-      protocol   = "-1"
+      protocol   = "6"
       cidr_block = "0.0.0.0/0"
       from_port  = 0
-      to_port    = 0
+      to_port    = 65535
+      egress     = false
+    },
+    {
+      rule_no    = 401
+      action     = "deny"
+      protocol   = "6"
+      cidr_block = "0.0.0.0/0"
+      from_port  = 0
+      to_port    = 65535
       egress     = true
     },
   ]
@@ -155,6 +211,8 @@ aws_rds = {
   stg       = 10
   user      = "adminuser"
   version   = "5.7"
+  retention = 7
+  insights  = true
 }
 
 ############################################
@@ -162,8 +220,8 @@ aws_rds = {
 ############################################
 
 aws_region = {
-  name      = "us-east-1"
-  true      = "true"
+  name = "us-east-1"
+  true = "true"
 }
 
 ############################################
@@ -171,7 +229,7 @@ aws_region = {
 ############################################
 
 aws_rt_private = {
-  name    = "tf-rt-private"
+  name = "tf-rt-private"
 }
 
 ############################################
@@ -188,7 +246,7 @@ aws_rt_public = {
 ############################################
 
 aws_s3 = {
-  name     = "tf-s3-clouding-s3"
+  name = "tf-s3-clouding-s3"
 }
 
 ############################################
@@ -197,12 +255,14 @@ aws_s3 = {
 
 aws_sg_private = {
   name = "tf-sg-private"
+  desc = "Security Group for private workloads"
   ingress = [
     {
       from_port   = 0
       to_port     = 0
       protocol    = "-1"
       cidr_blocks = ["10.100.20.0/22"]
+      description = "Full access from VPC"
     }
   ]
   egress = [
@@ -211,6 +271,7 @@ aws_sg_private = {
       to_port     = 0
       protocol    = "-1"
       cidr_blocks = ["10.100.20.0/22"]
+      description = "Full access from VPC"
     }
   ]
 }
@@ -222,32 +283,51 @@ aws_sg_private = {
 
 aws_sg_public = {
   name = "tf-sg-public"
+  desc = "Security Group for public workloads"
   ingress = [
     {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
+      description = "SSH from home"
+    },
+    {
+      from_port   = 3389
+      to_port     = 3389
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+      description = "RDP from home"
     },
     {
       from_port   = 80
       to_port     = 80
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
+      description = "HTTP from home"
     },
     {
       from_port   = 443
       to_port     = 443
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
+      description = "HTTPS from home"
     }
   ]
   egress = [
     {
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
+      from_port   = 2049
+      to_port     = 2049
+      protocol    = "tcp"
+      cidr_blocks = ["10.100.20.0/22"]
+      description = "EFS to private connection"
+    },
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
+      description = "Access to Internet and updates"
     }
   ]
 }
@@ -258,8 +338,8 @@ aws_sg_public = {
 ############################################
 
 aws_sb_private = {
-  cidr      = "10.100.20.0/22"
-  name      = "tf-sb-private"
+  cidr = "10.100.20.0/22"
+  name = "tf-sb-private"
 }
 
 ############################################
@@ -267,8 +347,8 @@ aws_sb_private = {
 ############################################
 
 aws_sb_public = {
-    cidr      = "10.100.21.0/24"
-    name      = "tf-sb-public"
+  cidr = "10.100.21.0/24"
+  name = "tf-sb-public"
 }
 
 ############################################
@@ -276,7 +356,7 @@ aws_sb_public = {
 ############################################
 
 aws_vpc = {
-  cidr      = "10.100.20.0/22"
-  igw       = "tf-ig"
-  name      = "tf-vpc"
+  cidr = "10.100.20.0/22"
+  igw  = "tf-ig"
+  name = "tf-vpc"
 }

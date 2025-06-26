@@ -1,18 +1,4 @@
 ############################################
-# PROJECT
-############################################
-
-variable "gcp_project" {
-  description = "Project Variables"
-  type = object({
-    coringa = string
-    name    = string
-    region  = string
-    zone    = string
-  })
-}
-
-############################################
 # VPC
 ############################################
 
@@ -35,6 +21,8 @@ variable "gcp_vpn" {
     key       = string
     onprem    = string
     onprem_sb = string
+    local     = string
+    remote    = string
     rt_name   = string
     rt_prio   = number
     tunnel    = string

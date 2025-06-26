@@ -11,7 +11,7 @@ variable "oci_autonomousdb" {
     name      = string
     pass      = string
     retention = number
-    version   = string 
+    version   = string
   })
 }
 
@@ -20,14 +20,21 @@ variable "oci_autonomousdb" {
 ############################################
 
 variable "oci_bucket" {
-  description = "Bucket Variables"
+  description = "Bucket variables"
   type = object({
-    name      = string
-    namespace = string
-    tier      = string
-    type      = string
+    name             = string
+    namespace        = string
+    type             = string
+    tier             = string
+    version          = string
+    lifecycle_name   = string
+    lifecycle_action = string
+    lifecycle_target = string
+    lifecycle_time   = number
+    lifecycle_unit   = string
   })
 }
+
 
 ############################################
 # Customer Premises Equipament
@@ -62,11 +69,11 @@ variable "oci_compartment" {
 variable "oci_compute" {
   description = "Compute Variables"
   type = object({
-    ad          = string
-    img         = string
-    name        = string
-    public      = bool
-    shape= object({
+    ad     = string
+    img    = string
+    name   = string
+    public = bool
+    shape = object({
       ocpus = number
       mem   = number
       name  = string
@@ -95,8 +102,8 @@ variable "oci_drg" {
 variable "oci_drg_attach" {
   description = "Dynamic Routing Gateway Attachment Variables"
   type = object({
-  name = string
-  type = string
+    name = string
+    type = string
   })
 }
 
@@ -181,7 +188,7 @@ variable "oci_mount" {
 variable "oci_nsg_private" {
   description = "NSG Private Variables"
   type = object({
-    name           = string
+    name = string
     ingress_rules = list(object({
       protocol    = string
       source_type = string
@@ -206,7 +213,7 @@ variable "oci_nsg_private" {
 variable "oci_nsg_public" {
   description = "NSG Public Variables"
   type = object({
-    name           = string
+    name = string
     ingress_rules = list(object({
       protocol    = string
       source_type = string
@@ -232,7 +239,7 @@ variable "oci_nsg_public" {
 variable "oci_rt_private" {
   description = "Route Table Private Variables"
   type = object({
-    name      = string
+    name = string
   })
 }
 
@@ -243,7 +250,7 @@ variable "oci_rt_private" {
 variable "oci_rt_public" {
   description = "Route Table Public Variables"
   type = object({
-    name  = string
+    name = string
     rules = list(object({
       cidr        = string
       description = string

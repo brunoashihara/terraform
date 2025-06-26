@@ -3,9 +3,10 @@
 ############################################
 
 resource "google_project" "tf_project" {
-  name            = var.gcp_project.name
-  project_id      = var.gcp_project.name
-  # Provisioner para destruir o projeto com o gcloud quando o recurso for destruído
+  # checkov:skip=CKV2_GCP_5: Doesnt need the Audit Logs in this project
+  name                = var.gcp_project.name
+  project_id          = var.gcp_project.name
+  auto_create_network = false
   provisioner "local-exec" {
     when    = destroy
     command = "gcloud projects delete ${self.project_id} --quiet"

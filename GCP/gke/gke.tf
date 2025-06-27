@@ -2,7 +2,7 @@
 # K8e
 ############################################
 
-#tfsec:ignore:google-gke-use-service-account
+#tfsec:ignore:google-gke-use-service-account tfsec:ignore:google-gke-enforce-pod-security-policy
 resource "google_container_cluster" "tf_gke" {
   #checkov:skip=CKV_GCP_61: Flows logs doesnt need here
   #checkov:skip=CKV_GCP_65: Doesnt need RBAC

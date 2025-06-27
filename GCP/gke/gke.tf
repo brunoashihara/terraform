@@ -36,9 +36,9 @@ resource "google_container_cluster" "tf_gke" {
   binary_authorization {
     evaluation_mode = var.gcp_gke.binary
   }
-    pod_security_policy_config {
-      enabled = var.gcp_gke.enable
-    }
+  pod_security_policy_config {
+    enabled = var.gcp_gke.enable
+  }
   node_config {
     oauth_scopes = [
       var.gcp_gke.oauth

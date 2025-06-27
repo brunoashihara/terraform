@@ -36,9 +36,6 @@ resource "google_container_cluster" "tf_gke" {
   binary_authorization {
     evaluation_mode = var.gcp_gke.binary
   }
-  pod_security_policy_config {
-    enabled = var.gcp_gke.enable
-  }
   node_config {
     oauth_scopes = [
       var.gcp_gke.oauth
@@ -48,9 +45,6 @@ resource "google_container_cluster" "tf_gke" {
     tags   = var.gcp_gke.tags
     metadata = {
       disable-legacy-endpoints = var.gcp_gke.enable
-    }
-    workload_identity_config {
-      workload_pool = "${var.project_id}.svc.id.goog"
     }
     workload_metadata_config {
       mode = var.gcp_gke.metadata

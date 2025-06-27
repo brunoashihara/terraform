@@ -112,5 +112,5 @@ resource "google_sql_user" "tf_user" {
   project     = var.project_id
   name        = var.gcp_postgres.user
   instance    = google_sql_database_instance.tf_db_instance.name
-  password_wo = var.gcp_postgres.pass
+  password = var.gcp_postgres.pass
 }

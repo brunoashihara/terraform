@@ -1,26 +1,27 @@
 # OCI - OpenTofu
 
-Este projeto cria os seguintes recursos de forma modular:
+This project creates the following resources in a modular way:
 + AutonomousDB;
-+ Bucket; 
-+ Compartment para usar neste deploy;
-+ Compute linux (montado o file) na subnet publico;
-+ Chave de acesso pem;
-+ VCN com uma subnet privado e uma publico;
-+ NSG privado e publico;
-+ Route Table para subnet privado e publico;
-+ VPN configurada faltando apenas modificar dados do onpremises;
++ Bucket;
++ A dedicated compartment for this deployment;
++ Linux Compute (with file mount) in the public subnet;
++ PEM access key;
++ VCN with one private and one public subnet;
++ Private and public NSGs;
++ Route tables for both private and public subnets;
++ Configured VPN (you only need to update on-premises info);
 
-## Instalação OCI CLI
+## Installing the OCI CLI
 
-+ GNU/LINUX
++ GNU/Linux
 
-1. Para realizar a instalação rode o comando abaixo:
+1. Run the following command to install:
+
 ```bash
 bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)"
 ```
 
-2. No final da instalação vai ser solicitado adicionar o $PATH, se a resposta padrão não for "Y" digite e aperte enter. Após a instalação rode o comando abaixo para reiniciar o shell: 
+2. At the end of the installation, it will prompt you to add the $PATH. If the default answer isn't "Y", type it and press enter. After the installation, run the command below to reload your shell:
 
 ```bash
 exec -l $SHELL
@@ -34,7 +35,7 @@ brew update && brew install oci-cli
 
 + Windows
 
-1. A instalação do Windows é para as versões Windows Server:
+1. Installation on Windows is intended for Windows Server versions:
 
 ```bash
 Set-ExecutionPolicy RemoteSigned
@@ -43,32 +44,32 @@ Invoke-WebRequest https://raw.githubusercontent.com/oracle/oci-cli/master/script
 ./install.ps1 -AcceptAllDefaults
 ```
 
-## Autenticar ao ambiente OCI
+Authenticate with the OCI Environment
 
-1. Crie uma [API Key](https://cloud.oracle.com/identity/domains/my-profile/api-keys) selecionando "**Generate API key pair**".
+1. Create an [API Key](https://cloud.oracle.com/identity/domains/my-profile/api-keys) by selecting "**Generate API key pair**".
 
-2. Salve a chave e renomeie para **oci_api_key.pem**.
+2. Save the key and rename it to **oci_api_key.pem**.
 
-3. Crie uma pasta para colocar a chave .pem criada:
+3. Create a folder to store the generated .pem key:
 
 + GNU/LINUX
 
 ```bash
 mkdir -p ~/.oci
 ```
-   + Mova a chave criada para a pasta .oci ou pelo comando **mv** ou por um **WinSCP**.
+   + Move the key to the .oci folder using **mv** or a tool like **WinSCP**.
 
 + Windows
 
-  + Crie uma pasta **.oci** na pasta raiz do seu usuário e mova a chave para está pasta.
+  + Create a **.oci** folder in your user's home directory and move the key there.
 
-4. Agora vamos corrigir as permissões da chave com o comando:
+4. Fix file permissions for the key with the following command:
 
 ```bash
 oci setup repair-file-permissions --file CAMINHODACHAVE/oci_api_key.pem
 ```
 
-4. Clique em **Add** e copie as informações para dentro da pasta **.oci** em um arquivo sem extensão com o nome de **config**. Segue um exemplo abaixo, lembrando de substituir as informações com os que aparecer ao criar a **API key**.
+5. Click  **Add** and copy the displayed information into a file named **config** (no file extension) inside the **.oci** folder. Use the example below and replace the values with the ones from your generated **API key**:
 
 ```bash
 [DEFAULT]
@@ -79,65 +80,62 @@ region=------------------
 key_file=CAMINHODACHAVE\.oci\oci_api_key.pem
 ```
 
-5. Por fim, corrigir as permissões da config com o comando:
+6. Finally, fix the permissions of the config file:
 
 ```bash
 oci setup repair-file-permissions --file CAMINHODACHAVE/config
 ```
 
-6. Pronto, já está conectado ao seu ambiente **OCI**!
+7. You're now connected to your **OCI environment**!
 
-## Alterar variaveis
+## Modify variables
 
-Antes de fazer o deploy consultar o arquivo **terraform.tfvars** e alterar campos principalmente relacionados a IPs
+Before deploying, check the **terraform.tfvars** file and update any fields related to IPs, etc.
 
-```bash
-oci os ns get
-```
+## Running OpenTofu
 
-## Executar OpenTofu
-
-1. Para iniciar o OpenTofu navegue até o diretório que contêm o arquivo **main.tf** e execute o seguinte comando:
+1. To start using OpenTofu, navigate to the directory containing the **main.tf** file and run:
 
 ```bash
 tofu init
 ```
 
-2. Observe se não ocorreu erros e execute os comandos para arrumar a formatação e validar os arquivos .tf:
+2. Ensure there are no errors, then run the formatting and validation commands:
 
 ```bash
 tofu fmt
 tofu valdiate
 ```
 
-3. Execute o comando abaixo para descrever o planejamento do deploy:
+3. To generate a deployment plan:
 
 ```bash
 tofu plan
 ```
 
-4. Em caso de nenhum erro pode executar o comando abaixo para aplicar os deploys:
+4. If there are no errors, apply the deployment with:
 
 ```bash
 tofu apply --auto-approve
 ```
 
-5. Para destruir todo o ambiente execute o comando abaixo:
+5. To destroy the entire environment:
 
 ```bash
 tofu destroy --auto-approve
 ```
 
-**OBS: Aguarde a falha ou a conclusão do apply ou do destroy, em caso de paradas forçadas o OpenTofu perde sua sincronia do tfstate com a realidade do seu ambiente, pode ser corrigido com o comando _tofu refresh_:**
+> **NOTE**: 
+> Wait for the apply or destroy process to finish or fail. Forcing it to stop may cause OpenTofu to lose sync with the actual state of your infrastructure. If that happens, run: **tofu refresh**.
 
-**OBS2: Caso o Autonomous Database executou seu backup automático, ao realizar o comando *tofu destroy --auto-approve* vai falhar na exclusão do *compartment* pois o backup demora algum tempo para ser removido do ambiente, confirme se o Autonomous Database realmente sumiu do seu *compartment* e em caso positivo pesquise por *compartment* e exclua-o manualmente.**
+> If Autonomous Database created an automatic backup, **tofu destroy --auto-approve** might fail when trying to delete the compartment. This happens because backups take time to be fully removed. Make sure the Autonomous Database has disappeared from the compartment, and then delete the compartment manually if needed.
 
 ```bash
 tofu refresh
 ```
 
-Em caso negativo ao tentar sincronizar o status, se for necessário destruir o ambiente este deve ser destruido os recursos de forma manual.
+If syncing fails or is inaccurate, you may need to manually destroy each resource.
 
-## Referências
+## References
 
 + [OCI cli](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm#InstallingCLI)

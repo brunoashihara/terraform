@@ -1,31 +1,31 @@
 # AZURE - OpenTofu
 
-Este projeto cria os seguintes recursos de forma modular:
-+ Blob;
+This project creates the following resources in a modular way:
++ Blob storage;
 + Container;
-+ Cosmodb;
-+ Mysql;
-+ Mssql;
-+ Postgres;
-+ DNS Zone para acesso privado do fileshare;
-+ FIleshare pela subnet privado;
-+ Chave de acesso pem;
-+ Vnet com subnet privado e publico;
-+ NSG privado e publico;
-+ Resource Group para neste deploy;
++ Cosmos DB;
++ MySQL;
++ MSSQL;
++ PostgreSQL;
++ DNS Zone for private access to the File Share;
++ File Share mounted in the private subnet;
++ PEM access key;
++ VNet with public and private subnets;
++ Public and private NSGs;
++ Resource Group specific to this deployment;
 + Storage Account;
-+ VM linux (montado fileshare) e windows (em teste a montagem) na subnet publico;
-+ VPN configurada faltando apenas modificar dados do onpremises;
++ Linux VM (with File Share mounted) and Windows VM (File Share mounting in testing) in the public subnet;
++ Configured VPN (only requires updating on-premises information);
 
-## Instalação Azure CLI
+## Installing Azure CLI
 
-+ GNU/LINUX
++ GNU/Linux
 
-1. Para instalar o Azure cli o linux precisa dos pacotes:
+1. To install the Azure CLI, your Linux system must include:
 
-   + Python 3.6.x, 3.7.x ou 3.8.x;
-   + libffi;
-   + OpenSSL 1.0.2;
+   + Python 3.6.x, 3.7.x, or 3.8.x  
+   + `libffi`  
+   + OpenSSL 1.0.2
 
 ```bash
 curl -L https://aka.ms/InstallAzureCli | bash
@@ -42,61 +42,64 @@ brew update && brew install azure-cli
 ```bash
 winget install -e --id Microsoft.AzureCLI
 ```
-## Autenticar ao ambiente Azure
+## Authenticate with the Azure Environment
 
-1. Execute o comando abaixo e siga os passos para se autenticar:
+1. Run the following command and follow the steps to authenticate:
 
 ```bash
 az login
 ``` 
 
-2. Pronto, já está conectado ao seu ambiente **AZURE**!
+2. Done! You're now connected to your **AZURE environment**!
 
-## Alterar variaveis
+## Modify variables
 
-Antes de fazer o deploy consultar o arquivo **terraform.tfvars** e alterar campos principalmente relacionados a IPs
+Before deploying, check the **terraform.tfvars** file and update any fields related to IPs, etc.
 
-## Executar OpenTofu
+## Running OpenTofu
 
-1. Para iniciar o OpenTofu navegue até o diretório que contêm o arquivo **main.tf** e execute o seguinte comando:
+1. To start using OpenTofu, navigate to the directory containing the **main.tf** file and run:
 
 ```bash
 tofu init
 ```
 
-2. Observe se não ocorreu erros e execute os comandos para arrumar a formatação e validar os arquivos .tf:
+2. Ensure there are no errors, then run the formatting and validation commands:
 
 ```bash
 tofu fmt
 tofu valdiate
 ```
 
-3. Execute o comando abaixo para descrever o planejamento do deploy:
+3. To generate a deployment plan:
 
 ```bash
 tofu plan
 ```
 
-4. Em caso de nenhum erro pode executar o comando abaixo para aplicar os deploys:
+4. If there are no errors, apply the deployment with:
 
 ```bash
 tofu apply --auto-approve
 ```
 
-5. Para destruir todo o ambiente execute o comando abaixo:
+5. To destroy the entire environment:
 
 ```bash
 tofu destroy --auto-approve
 ```
 
-**OBS: Aguarde a falha ou a conclusão do apply ou do destroy, em caso de paradas forçadas o OpenTofu perde sua sincronia do tfstate com a realidade do seu ambiente, pode ser corrigido com o comando _tofu refresh_:**
+> **NOTE**: 
+> Wait for the apply or destroy process to finish or fail. Forcing it to stop may cause OpenTofu to lose sync with the actual state of your infrastructure. If that happens, run: **tofu refresh**.
+
+> If Autonomous Database created an automatic backup, **tofu destroy --auto-approve** might fail when trying to delete the compartment. This happens because backups take time to be fully removed. Make sure the Autonomous Database has disappeared from the compartment, and then delete the compartment manually if needed.
 
 ```bash
 tofu refresh
 ```
 
-Em caso negativo ao tentar sincronizar o status, se for necessário destruir o ambiente este deve ser destruido os recursos de forma manual.
+If syncing fails or is inaccurate, you may need to manually destroy each resource.
 
-## Referências
+## References
 
 + [Azure cli](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=script)

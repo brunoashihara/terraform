@@ -1,23 +1,23 @@
 # TERRAFORM
 
-Laboratórios de IaC para os providers AWS, AZURE, GCP e OCI.
+IaC labs for AWS, AZURE, GCP, and OCI providers.
 
 ## Checklist
 
-1. Instalação OpenTofu;
-2. Instalação cli do provider;
-3. Modificar variaveis do terraform;
-4. Caso use todo o ambiente como modulo o main.tf está criado na raiz, o que faltaria é copiar as variaveis nos modulos e tfvars como os exemplos abaixo:
-    + **azure/variables.tf** para a raiz como **azure_vars.tf**;
-    + **azure/terraform.tfvar**s para a raiz como **azure.tfvars**;
-5. Executar o tofu apply referenciando os tfvars pois ele lê apenas um arquivo (terraform.tfvars) e se tiver com outro nome ele não vai ler;
+1. Install OpenTofu;
+2. Install the provider CLI;
+3. Modify Terraform variables;
+4. If using the entire environment as a module, the `main.tf` is already created in the root. You just need to copy the variables into the modules and `.tfvars` as shown below:
+    + **azure/variables.tf** to the root as **azure_vars.tf**;
+    + **azure/terraform.tfvars** to the root as **azure.tfvars**;
+5. Run `tofu apply` referencing the tfvars, since it only reads `terraform.tfvars` by default, and will not recognize other file names unless specified:
 ```bash 
 tofu apply -var-file="aws.tfvars" -var-file="azure.tfvars" -var-file="gcp.tfvars" -var-file="oci.tfvars"
 ```
 
-**Por experiência recomendo o uso de ambiente GNU/Linux pois o Windows e Antvírus podem invalidar e acusar as instalações como maliciosas. Em caso de uso do Windows podemos usar o [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install)**
+> **Based on experience, I recommend using a GNU/Linux environment since Windows and antivirus software may block or flag installations as malicious. If you're using Windows, it's better to use [WSL](https://learn.microsoft.com/pt-br/windows/wsl/install)**
 
-## Instalação OpenTofu
+## OpenTofu Installation
 
 + GNU/Linux
 
@@ -30,13 +30,13 @@ rm install-opentofu.sh
 
 + Windows PowerShell
 
-1. No Windows precisa habilitar o uso de scripts tanto com o **RemoteSigned** ou o **Unrestricted**
+1. In Windows, you need to enable script execution using **RemoteSigned** or **Unrestricted**
 
 ```bash
 Set-ExecutionPolicy RemoteSigned
 ```
 
-2. Para instalar o OpenTofu ele pede para instalar o cosign ou GPG e adicionar o caminho para a instalação, no caso podemos ignorar a verificação com o -skipVerify _não recomendado_
+2. To install OpenTofu, it may ask for cosign or GPG and require adding them to the path. You can skip the verification with -skipVerify (not recommended):
 
 ```bash
 Invoke-WebRequest -outfile "install-opentofu.ps1" -uri "https://get.opentofu.org/install-opentofu.ps1"
@@ -44,14 +44,14 @@ Invoke-WebRequest -outfile "install-opentofu.ps1" -uri "https://get.opentofu.org
 Remove-Item install-opentofu.ps1
 ```
 
-## Instalação cli do provider
+## Provider CLI Installation
 
 + [AWS](https://github.com/brunoashihara/terraform/blob/main/AWS/)
 + [AZURE](https://github.com/brunoashihara/terraform/blob/main/AZURE/)
 + [GCP](https://github.com/brunoashihara/terraform/blob/main/GCP/)
 + [OCI](https://github.com/brunoashihara/terraform/blob/main/OCI/)
 
-## Referências
+## References
 
 + [OpenTofu docs](https://opentofu.org/docs/)
 + [Terraform docs](https://registry.terraform.io/providers)

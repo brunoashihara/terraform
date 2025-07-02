@@ -1,23 +1,23 @@
 # AWS - OpenTofu
 
-Este projeto cria os seguintes recursos de forma modular:
+This project creates the following resources in a modular way:
 + DynamoDB;
-+ EC2 Linux (com um EFS montado) e Windows na subnet publico; 
-+ EFS na subnet privado;
-+ Chave de acesso pem;
-+ NACL para subnet privado e publico;
++ EC2 instances (Linux with EFS mounted, and Windows) in the public subnet;
++ EFS in the private subnet;
++ PEM access key;
++ NACLs for both private and public subnets;
 + RDS;
-+ Route Table para subnet privado e publico;
++ Route tables for both private and public subnets;
 + S3;
-+ Security Group privado e publico;
-+ VPC com uma subnet privado e uma publico;
++ Private and public Security Groups;
++ VPC with one private and one public subnet;
 
-## Instalação AWS CLI
+## Installing AWS CLI
 
-+ GNU/LINUX
++ GNU/Linux
 
-1. Para realizar a instalação é necessário ter o pacote unzip:
-   - dnf
+1. You must have the `unzip` package installed:
+   - Using `dnf`:
 
    ```bash
    dnf install unzip -y
@@ -29,7 +29,7 @@ Este projeto cria os seguintes recursos de forma modular:
    apt install unzip -y
    ```
 
-2. Seguir a instalação dependendo da sua arquitetura:
+2. Install the CLI based on your system architecture:
    - x86
 
    ```bash
@@ -55,70 +55,76 @@ sudo installer -pkg AWSCLIV2.pkg -target /
 
 + Windows
 
-1. Para realizar a instalação baixe o arquivo MSI do [AWS CLI](https://awscli.amazonaws.com/AWSCLIV2.msi) e execute-o ou rode o seguinte comando no powershell:
+1. Download the [AWS CLI](https://awscli.amazonaws.com/AWSCLIV2.msi) and run it, or use the following PowerShell command:
 ```bash
 msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
 ```
-## Autenticar ao ambiente AWS
+## Authenticate with the AWS Environment
 
-1. Crie uma [access key](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) com as permissões necessárias ou para facilitar o laboratório, crie para um usuário com permissões de **admin**.
+1. Create an [access key](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) with the necessary permissions. For lab purposes, you can use a user with **admin** privileges.
 
-2. Salve o **Access Key ID** e o **Secret Access Key** para ser usado posteriormente.
+2. Save the **Access Key ID** and  **Secret Access Key** to be used later.
 
-3. Execute no terminal o comando **aws configure** e preencha as informações conforme o seu ambiente:
+3. Run the following command in your terminal and fill in the prompts according to your environment:
+```bash
+aws configure
+```
 
    + Access Key;
    + Secret Access Key;
    + Region;
    + Output;
 
-4. Pronto, já está conectado ao seu ambiente **AWS**!
+4. Done! You're now connected to your **AWS environment**!
 
-## Alterar variaveis
+## Modify variables
 
-Antes de fazer o deploy consultar o arquivo **terraform.tfvars** e alterar campos principalmente relacionados a IPs
+Before deploying, check the **terraform.tfvars** file and update any fields related to IPs, etc.
 
-## Executar OpenTofu
+## Running OpenTofu
 
-1. Para iniciar o OpenTofu navegue até o diretório que contêm o arquivo **main.tf** e execute o seguinte comando:
+1. To start using OpenTofu, navigate to the directory containing the **main.tf** file and run:
 
 ```bash
 tofu init
 ```
 
-2. Observe se não ocorreu erros e execute os comandos para arrumar a formatação e validar os arquivos .tf:
+2. Ensure there are no errors, then run the formatting and validation commands:
 
 ```bash
 tofu fmt
-tofu validate
+tofu valdiate
 ```
 
-3. Execute o comando abaixo para descrever o planejamento do deploy:
+3. To generate a deployment plan:
 
 ```bash
 tofu plan
 ```
 
-4. Em caso de nenhum erro pode executar o comando abaixo para aplicar os deploys:
+4. If there are no errors, apply the deployment with:
 
 ```bash
 tofu apply --auto-approve
 ```
 
-5. Para destruir todo o ambiente execute o comando abaixo:
+5. To destroy the entire environment:
 
 ```bash
 tofu destroy --auto-approve
 ```
 
-**OBS: Aguarde a falha ou a conclusão do apply ou do destroy, em caso de paradas forçadas o OpenTofu perde sua sincronia do tfstate com a realidade do seu ambiente, pode ser corrigido com o comando _tofu refresh_:**
+> **NOTE**: 
+> Wait for the apply or destroy process to finish or fail. Forcing it to stop may cause OpenTofu to lose sync with the actual state of your infrastructure. If that happens, run: **tofu refresh**.
+
+> If Autonomous Database created an automatic backup, **tofu destroy --auto-approve** might fail when trying to delete the compartment. This happens because backups take time to be fully removed. Make sure the Autonomous Database has disappeared from the compartment, and then delete the compartment manually if needed.
 
 ```bash
 tofu refresh
 ```
 
-Em caso negativo ao tentar sincronizar o status, se for necessário destruir o ambiente este deve ser destruido os recursos de forma manual.
+If syncing fails or is inaccurate, you may need to manually destroy each resource.
 
-## Referências
+## References
 
 + [AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
